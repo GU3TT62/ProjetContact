@@ -162,6 +162,11 @@ public class DbContact {
                 KEY_PRENOM,KEY_ADRESS,KEY_TEL,Key_FAV}, null, null, null, null, null);
     }
 
+    public Cursor fetchFavs(){
+        return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_NOM,
+                KEY_PRENOM,KEY_ADRESS,KEY_TEL,Key_FAV}, Key_FAV+"="+true, null, null, null, null);
+    }
+
     /**
      * Return a Cursor positioned at the note that matches the given rowId
      *
