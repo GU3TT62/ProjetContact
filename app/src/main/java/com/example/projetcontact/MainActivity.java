@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.ActionMode;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,24 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.ListContact);
 
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if (actionMode != null) {
-                    return false;
-                }
-
-                actionMode = MainActivity.this.startActionMode(ActionModeCallback);
-                actionMode.setTag(position);
-
-
-
-                return true;
-            }
-
-
-        });
 
         Db=new DbContact(this);
         Db.open();
@@ -74,7 +59,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, NouveauContact.class));
 
     }
-
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.context_menu, menu);
+    }
 
 
 
@@ -132,49 +122,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
-
-
-    private ActionMode.Callback ActionModeCallback = new ActionMode.Callback() {
-        @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            mode.getMenuInflater().inflate(R.menu.context_menu, menu);
-            mode.setTitle("Choix Action");
-            return true;
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.supp:
+                Db.deleteContact(info.id);
+                return true;
+            case R.id.fav:
+                return true;
+            default:
+                return super.onContextItemSelected(item);
         }
+    }
 
-        @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-            return false;
-        }
-
-        @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            int pos = Integer.parseInt(mode.getTag().toString());
-            Cursor SelectedTaskCursor = (Cursor) listView.getItemAtPosition(pos);
-            final String SelectedTask = SelectedTaskCursor.getString(SelectedTaskCursor.getColumnIndex("nom"));
-            switch (item.getItemId()) {
-                case R.id.supp:
-                    //Db.deleteContact(pos);
-                    mode.finish();
-                    return true;
-
-
-                default:
-                    return false;
-            }
-        }
-
-        @Override
-        public void onDestroyActionMode(ActionMode mode) {
-            actionMode = null;
-        }
-    };
 
 
 
