@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/supp"
         android:orderInCategory="100"
@@ -11,4 +11,4 @@
         android:title="Ajout Favoris"
         />
 
-</resources>
+</menu>

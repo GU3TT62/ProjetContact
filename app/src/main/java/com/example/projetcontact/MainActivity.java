@@ -1,16 +1,10 @@
 package com.example.projetcontact;
 
-import android.app.SearchManager;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.ActionMode;
 import android.view.ContextMenu;
@@ -59,15 +53,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, NouveauContact.class));
 
     }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.context_menu, menu);
+        inflater.inflate(R.menu.item, menu);
     }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

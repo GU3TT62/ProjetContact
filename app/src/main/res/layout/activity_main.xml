@@ -10,13 +10,13 @@
         android:id="@+id/ProjetContact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:tag="rfd"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:text="ProjetContact"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
