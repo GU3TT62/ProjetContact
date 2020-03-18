@@ -1,6 +1,7 @@
 package com.example.projetcontact;
 //Ceci est un test
 import android.app.SearchManager;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private int nbTache=1;
     private ActionMode actionMode;
 
+    EditText nom;
+    EditText prenom;
+    EditText tel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         /*Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
+        nom = (EditText) findViewById(R.id.Nom);
+        prenom = (EditText) findViewById(R.id.Prenom);
+        tel = (EditText) findViewById(R.id.Tel);
 
         listView = (ListView) findViewById(R.id.ListContact);
 
@@ -58,29 +66,36 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        FloatingActionButton fab = findViewById(R.id.add);
+        /*FloatingActionButton fab = findViewById(R.id.add);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-                Db.createContact("truc", "truc test de contact","trg","7845",false);
-                fillData();
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                //startActivity(new Intent(this, NouveauContact.class));
+
+               // Db.createContact("truc", "truc test de contact","trg","7845",false);
+                //fillData();
 
             }
-        });
+        });*/
         Db=new DbContact(this);
         Db.open();
         fillData();
     }
     public void add(View view) {
 
-        Db.createContact("Tâche", "truc test de contact","trg","7845",false);
-        fillData();
-
+        startActivity(new Intent(this, NouveauContact.class));
 
 
     }
+    public void nouveauContact(View view) {
+
+        Db.createContact(nom.getText().toString(), prenom.getText().toString(),"trg",tel.getText().toString(),false);
+        fillData();
+
+    }
+
 
 
 
