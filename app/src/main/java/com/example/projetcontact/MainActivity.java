@@ -65,20 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
-        /*FloatingActionButton fab = findViewById(R.id.add);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                //startActivity(new Intent(this, NouveauContact.class));
-
-               // Db.createContact("truc", "truc test de contact","trg","7845",false);
-                //fillData();
-
-            }
-        });*/
         Db=new DbContact(this);
         Db.open();
         fillData();
@@ -87,14 +73,8 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(new Intent(this, NouveauContact.class));
 
-
     }
-    public void nouveauContact(View view) {
 
-        Db.createContact(nom.getText().toString(), prenom.getText().toString(),"trg",tel.getText().toString(),false);
-        fillData();
-
-    }
 
 
 

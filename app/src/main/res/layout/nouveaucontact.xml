@@ -3,29 +3,40 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Ajouter un Contact"
+        android:textSize="35dp"
+
+        />
+
+
     <EditText
         android:id="@+id/Nom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Nom" />
+        android:hint="Nom"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/Prenom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Prenom" />
+        android:hint="Prenom"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/Tel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Tel" />
+        android:hint="Tel"
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/ajout"
