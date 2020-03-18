@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         tel = (EditText) findViewById(R.id.Tel);
 
         listView = (ListView) findViewById(R.id.ListContact);
-
+        registerForContextMenu(listView);
 
 
         Db=new DbContact(this);
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     private void fillData() {
         // Get all of the notes from the database and create the item list
         Cursor c = Db.fetchAllContact();
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
         switch (item.getItemId()) {
             case R.id.supp:
                 Db.deleteContact(info.id);
