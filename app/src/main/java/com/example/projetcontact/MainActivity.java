@@ -1,5 +1,5 @@
 package com.example.projetcontact;
-
+//Ceci est un test
 import android.app.SearchManager;
 import android.database.Cursor;
 import android.net.Uri;
