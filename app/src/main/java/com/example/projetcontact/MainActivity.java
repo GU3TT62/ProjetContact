@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.supp:
                 Db.deleteContact(info.id);
+                fillData();
                 return true;
             case R.id.fav:
                 return true;
