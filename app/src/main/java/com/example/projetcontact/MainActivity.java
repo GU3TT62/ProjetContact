@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //up
     private void fillDataFav() {
         // Get all of the notes from the database and create the item list
         Cursor c = Db.fetchFavs();
