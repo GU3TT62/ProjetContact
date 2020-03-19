@@ -1,15 +1,13 @@
 package com.example.projetcontact;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.DropBoxManager;
-import android.view.ActionMode;
+
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -19,7 +17,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,8 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private DbContact Db;
-    private int nbTache=1;
-    private ActionMode actionMode;
+
 
     EditText nom;
     EditText prenom;
@@ -42,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         /*Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
-        nom = (EditText) findViewById(R.id.Nom);
-        prenom = (EditText) findViewById(R.id.Prenom);
-        tel = (EditText) findViewById(R.id.Tel);
+        nom =  findViewById(R.id.Nom);
+        prenom =  findViewById(R.id.Prenom);
+        tel =  findViewById(R.id.Tel);
 
-        listView = (ListView) findViewById(R.id.ListContact);
-        listView2 = (ListView) findViewById(R.id.VueContact);
+        listView =  findViewById(R.id.ListContact);
+        listView2 =  findViewById(R.id.VueContact);
 
         registerForContextMenu(listView);
 
@@ -62,14 +58,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private final ListView.OnItemClickListener supprimeOnItemClick = new AdapterView.OnItemClickListener() {
-        @Override
         public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
             startActivity(new Intent(this, VueContact.class));
         }
 
-    };
+
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -116,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         SimpleCursorAdapter contact = new SimpleCursorAdapter(this, R.layout.contact, c, from, to);
         listView.setAdapter(contact);
 
-        SimpleCursorAdapter vuecontact = new SimpleCursorAdapter(this, R.layout.vuecontact, c, from, to);
+        SimpleCursorAdapter vuecontact = new SimpleCursorAdapter(this, R.layout.vuecontact, c, from2, to2);
         listView2.setAdapter(vuecontact);
 
     }

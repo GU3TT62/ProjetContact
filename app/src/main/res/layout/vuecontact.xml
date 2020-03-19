@@ -12,6 +12,7 @@
         android:layout_width="230dp"
         android:layout_height="243dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,19 +25,21 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="56dp"
+        android:contentDescription="@string/phone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/champ4"
+        app:layout_constraintTop_toBottomOf="parent"
         app:srcCompat="@android:drawable/stat_sys_phone_call" />
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/sms"
         android:layout_marginTop="51dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/champ4"
+        app:layout_constraintTop_toBottomOf="parent"
         app:srcCompat="@android:drawable/ic_menu_send" />
 
     <ListView
@@ -52,5 +55,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout"/>
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

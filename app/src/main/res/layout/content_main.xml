@@ -21,12 +21,12 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Contacts" />
+            android:text="@string/contact" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Favoris" />
+            android:text="@string/fav" />
 
 
     </com.google.android.material.tabs.TabLayout>
@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="add"
-        android:text="Nouveau Contact"
+        android:text="@string/nouveauContact"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

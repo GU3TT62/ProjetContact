@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">ProjetContact</string>
     <string name="action_settings">Settings</string>
+    <string name="nouveauContact">Nouveau Contact</string>
+    <string name="fav">Favoris</string>
+    <string name="contact">Contacts</string>
+    <string name="sms">Sms</string>
+    <string name="phone">Phone</string>
+    <string name="photo">Photo</string>
+    <string name="ajoutContact">Ajouter Un contact</string>
+    <string name="nom">Nom</string>
+    <string name="prenom">Prénom</string>
+    <string name="tel">Téléphone</string>
+    <string name="adress">Adresse</string>
+
+
+
 </resources>
