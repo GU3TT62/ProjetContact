@@ -58,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-        public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+        /*public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
             startActivity(new Intent(this, VueContact.class));
-        }
+        }*/
 
 
 
@@ -102,16 +102,16 @@ public class MainActivity extends AppCompatActivity {
         String[] from = new String[] { DbContact.KEY_NOM,DbContact.KEY_PRENOM};
         int[] to = new int[] { R.id.champ1,R.id.champ2 };
 
-        String[] from2 = new String[] { DbContact.KEY_NOM,DbContact.KEY_PRENOM,DbContact.KEY_TEL, DbContact.KEY_ADRESS,DbContact.Key_FAV};
-        int[] to2 = new int[] { R.id.champ1,R.id.champ2, };
+       /* String[] from2 = new String[] { DbContact.KEY_NOM,DbContact.KEY_PRENOM,DbContact.KEY_TEL, DbContact.KEY_ADRESS,DbContact.Key_FAV};
+        int[] to2 = new int[] { R.id.champ1,R.id.champ2,R.id.champ3,R.id.champ4 };*/
 
         // Now create an array adapter and set it to display using our row
 
         SimpleCursorAdapter contact = new SimpleCursorAdapter(this, R.layout.contact, c, from, to);
         listView.setAdapter(contact);
 
-        SimpleCursorAdapter vuecontact = new SimpleCursorAdapter(this, R.layout.vuecontact, c, from2, to2);
-        listView2.setAdapter(vuecontact);
+       /* SimpleCursorAdapter vuecontact = new SimpleCursorAdapter(this, R.layout.vuecontact, c, from2, to2);
+        listView2.setAdapter(vuecontact);*/
 
     }
 
