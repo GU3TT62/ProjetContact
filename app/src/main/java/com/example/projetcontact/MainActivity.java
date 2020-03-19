@@ -1,11 +1,14 @@
 package com.example.projetcontact;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.DropBoxManager;
 import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
@@ -16,10 +19,13 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private ListView listView;
+    private ListView listView2;
+
 
     private DbContact Db;
     private int nbTache=1;
@@ -41,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         tel = (EditText) findViewById(R.id.Tel);
 
         listView = (ListView) findViewById(R.id.ListContact);
+        listView2 = (ListView) findViewById(R.id.VueContact);
+
         registerForContextMenu(listView);
 
 
@@ -53,6 +61,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, NouveauContact.class));
 
     }
+
+    private final ListView.OnItemClickListener supprimeOnItemClick = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+            startActivity(new Intent(this, VueContact.class));
+        }
+
+    };
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -91,10 +108,16 @@ public class MainActivity extends AppCompatActivity {
         String[] from = new String[] { DbContact.KEY_NOM,DbContact.KEY_PRENOM};
         int[] to = new int[] { R.id.champ1,R.id.champ2 };
 
+        String[] from2 = new String[] { DbContact.KEY_NOM,DbContact.KEY_PRENOM,DbContact.KEY_TEL, DbContact.KEY_ADRESS,DbContact.Key_FAV};
+        int[] to2 = new int[] { R.id.champ1,R.id.champ2, };
+
         // Now create an array adapter and set it to display using our row
 
         SimpleCursorAdapter contact = new SimpleCursorAdapter(this, R.layout.contact, c, from, to);
         listView.setAdapter(contact);
+
+        SimpleCursorAdapter vuecontact = new SimpleCursorAdapter(this, R.layout.vuecontact, c, from, to);
+        listView2.setAdapter(vuecontact);
 
     }
 
@@ -107,10 +130,14 @@ public class MainActivity extends AppCompatActivity {
         String[] from = new String[] { DbContact.KEY_NOM,DbContact.KEY_PRENOM};
         int[] to = new int[] { R.id.champ1,R.id.champ2 };
 
+
+
         // Now create an array adapter and set it to display using our row
 
         SimpleCursorAdapter contact = new SimpleCursorAdapter(this, R.layout.contact, c, from, to);
         listView.setAdapter(contact);
+
+
 
     }
 

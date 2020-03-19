@@ -8,14 +8,14 @@
 
     <TextView
         android:id="@+id/champ1"
-        android:layout_width="204dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         app:fontFamily="sans-serifserif" />
 
     <TextView
         android:id="@+id/champ2"
-        android:layout_width="130dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         app:fontFamily="sans-serif" />

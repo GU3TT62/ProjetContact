@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.ActionMode;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 
@@ -18,6 +19,8 @@ public class NouveauContact extends AppCompatActivity {
     EditText nom;
     EditText prenom;
     EditText tel;
+    EditText adresse;
+    Boolean fav;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -26,13 +29,20 @@ public class NouveauContact extends AppCompatActivity {
         nom = (EditText) findViewById(R.id.Nom);
         prenom = (EditText) findViewById(R.id.Prenom);
         tel = (EditText) findViewById(R.id.Tel);
+        adresse = (EditText) findViewById(R.id.adresse);
         Db=new DbContact(this);
         Db.open();
+        final CheckBox checkBox = (CheckBox) findViewById(R.id.fav);
+        if (checkBox.isChecked()) {
+            fav=true;
+        }else{
+            fav=false;
+        }
 
     }
     public void nouveauContact(View view) {
 
-        Db.createContact(nom.getText().toString(), prenom.getText().toString(),"trg",tel.getText().toString(),false);
+        Db.createContact(nom.getText().toString(), prenom.getText().toString(),adresse.getText().toString(),tel.getText().toString(),fav);
         startActivity(new Intent(this, MainActivity.class));
 
 
