@@ -10,10 +10,12 @@
         android:id="@+id/ProjetContact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/app_name"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:text="@string/app_name"
