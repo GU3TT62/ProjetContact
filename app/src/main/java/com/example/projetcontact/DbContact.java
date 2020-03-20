@@ -154,6 +154,16 @@ public class DbContact {
         return mDb.delete(DATABASE_TABLE, null,null)>0;
     }
 
+    public void addFav(long rowId){
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_NOM, mDb.query(DATABASE_TABLE, new String[] {KEY_NOM},KEY_ROWID+"="+rowId,null,null,null,null).getString(1));
+        cv.put(KEY_PRENOM, mDb.query(DATABASE_TABLE, new String[] {KEY_PRENOM},KEY_ROWID+"="+rowId,null,null,null,null).getString(2));
+        cv.put(KEY_ADRESS, mDb.query(DATABASE_TABLE, new String[] {KEY_ADRESS},KEY_ROWID+"="+rowId,null,null,null,null).getString(3));
+        cv.put(KEY_TEL, mDb.query(DATABASE_TABLE, new String[] {KEY_TEL},KEY_ROWID+"="+rowId,null,null,null,null).getString(4));
+        cv.put(KEY_MAIL, mDb.query(DATABASE_TABLE, new String[] {KEY_MAIL},KEY_ROWID+"="+rowId,null,null,null,null).getString(5));
+        cv.put(Key_FAV,true);
+    }
+
     /**
      * Return a Cursor over the list of all notes in the database
      *
