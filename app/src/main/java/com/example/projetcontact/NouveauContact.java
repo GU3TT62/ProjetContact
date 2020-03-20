@@ -18,6 +18,8 @@ public class NouveauContact extends AppCompatActivity {
     EditText prenom;
     EditText tel;
     EditText adresse;
+    EditText mail;
+
     Boolean fav;
 
     protected void onCreate(Bundle savedInstanceState){
@@ -28,6 +30,8 @@ public class NouveauContact extends AppCompatActivity {
         prenom =  findViewById(R.id.Prenom);
         tel =  findViewById(R.id.Tel);
         adresse =  findViewById(R.id.adresse);
+        adresse =  findViewById(R.id.Mail);
+
         Db=new DbContact(this);
         Db.open();
         final CheckBox checkBox =  findViewById(R.id.fav);
@@ -40,7 +44,7 @@ public class NouveauContact extends AppCompatActivity {
     }
     public void nouveauContact(View view) {
 
-        Db.createContact(nom.getText().toString(), prenom.getText().toString(),adresse.getText().toString(),tel.getText().toString(),fav);
+        Db.createContact(nom.getText().toString(), prenom.getText().toString(),adresse.getText().toString(),tel.getText().toString(),mail.getText().toString(),fav);
         startActivity(new Intent(this, MainActivity.class));
 
 

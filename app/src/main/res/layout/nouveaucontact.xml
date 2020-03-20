@@ -10,10 +10,14 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="441dp"
-        android:layout_height="81dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="346dp"
+        android:layout_marginTop="38dp"
+
         android:gravity="center"
         android:text="@string/ajoutContact"
         android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@+id/Mail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +27,7 @@
         android:id="@+id/Nom"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="38dp"
         android:ems="10"
         android:hint="@string/nom"
         android:inputType="textPersonName"
@@ -71,19 +75,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Tel" />
 
+    <EditText
+        android:id="@+id/Mail"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:ems="10"
+        android:hint="@string/mail"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/fav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
     <CheckBox
         android:id="@+id/fav"
         android:layout_width="0dp"
-        android:layout_height="16dp"
+        android:layout_height="0dp"
         android:layout_marginStart="44dp"
         android:layout_marginLeft="44dp"
         android:layout_marginEnd="44dp"
         android:layout_marginRight="44dp"
+        android:layout_marginBottom="217dp"
         android:text="@string/fav"
-        app:layout_constraintBottom_toTopOf="@+id/ajout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adresse" />
+        app:layout_constraintTop_toBottomOf="@+id/Mail" />
+
+
 
     <Button
         android:id="@+id/ajout"

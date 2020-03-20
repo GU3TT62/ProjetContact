@@ -12,6 +12,9 @@
     <string name="prenom">Prénom</string>
     <string name="tel">Téléphone</string>
     <string name="adress">Adresse</string>
+    <string name="mail">Mail</string>
+    <string name="SendMAil">Envoyer un mail</string>
+    <string name="loca">Localiser</string>
 
 
 

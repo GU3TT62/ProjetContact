@@ -42,6 +42,8 @@ public class DbContact {
     public static final String KEY_ADRESS = "adresse";
     public static final String KEY_TEL = "tel";
     public static final String Key_FAV = "fav";
+    public static final String KEY_MAIL = "fav";
+
 
 
 
@@ -54,7 +56,7 @@ public class DbContact {
      */
     private static final String DATABASE_CREATE =
         "create table Contact (_id integer primary key autoincrement, "
-        + "nom text not null, prenom text not null, adresse text not null, tel text not null, fav boolean);";
+        + "nom text not null, prenom text not null, adresse text not null, tel text not null,mail text not null, fav boolean);";
 
     private static final String DATABASE_NAME = "data";
     private static final String DATABASE_TABLE = "Contact";
@@ -124,12 +126,13 @@ public class DbContact {
      * @param adresse the address of the ncontactote
      * @return rowId or -1 if failed
      */
-    public long createContact(String nom, String prenom, String adresse,String tel,boolean fav) {
+    public long createContact(String nom, String prenom, String adresse,String tel,String mail,boolean fav) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_NOM, nom);
         initialValues.put(KEY_PRENOM, prenom);
         initialValues.put(KEY_ADRESS, adresse);
         initialValues.put(KEY_TEL, tel);
+        initialValues.put(KEY_MAIL, mail);
         initialValues.put(Key_FAV, fav);
 
 
@@ -159,12 +162,12 @@ public class DbContact {
     public Cursor fetchAllContact() {
 
         return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_NOM,
-                KEY_PRENOM,KEY_ADRESS,KEY_TEL,Key_FAV}, null, null, null, null, KEY_NOM);
+                KEY_PRENOM,KEY_ADRESS,KEY_TEL,KEY_MAIL,Key_FAV}, null, null, null, null, KEY_NOM);
     }
     //up
     public Cursor fetchFavs(){
         return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_NOM,
-                KEY_PRENOM,KEY_ADRESS,KEY_TEL,Key_FAV}, Key_FAV+"="+true, null, null, null, null);
+                KEY_PRENOM,KEY_ADRESS,KEY_TEL,KEY_MAIL,Key_FAV}, Key_FAV+"="+true, null, null, null, KEY_NOM);
     }
 
     /**
@@ -179,7 +182,7 @@ public class DbContact {
         Cursor mCursor =
 
             mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                    KEY_NOM, KEY_PRENOM,KEY_ADRESS,KEY_TEL,Key_FAV}, KEY_ROWID + "=" + rowId, null,
+                    KEY_NOM, KEY_PRENOM,KEY_ADRESS,KEY_TEL,KEY_MAIL,Key_FAV}, KEY_ROWID + "=" + rowId, null,
                     null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -198,12 +201,14 @@ public class DbContact {
      * @param prenom value to set note body to
      * @return true if the note was successfully updated, false otherwise
      */
-    public boolean updateContact(long rowId, String nom, String prenom, String adresse, String tel,boolean fav) {
+    public boolean updateContact(long rowId, String nom, String prenom, String adresse, String tel,String mail,boolean fav) {
         ContentValues args = new ContentValues();
         args.put(KEY_NOM, nom);
         args.put(KEY_PRENOM, prenom);
         args.put(KEY_ADRESS, adresse);
         args.put(KEY_TEL, tel);
+        args.put(KEY_MAIL, mail);
+
         args.put(Key_FAV, fav);
 
 
