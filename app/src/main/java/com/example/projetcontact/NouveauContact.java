@@ -30,7 +30,7 @@ public class NouveauContact extends AppCompatActivity {
         prenom =  findViewById(R.id.Prenom);
         tel =  findViewById(R.id.Tel);
         adresse =  findViewById(R.id.adresse);
-        adresse =  findViewById(R.id.Mail);
+        mail =  findViewById(R.id.Mail);
 
         Db=new DbContact(this);
         Db.open();

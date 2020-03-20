@@ -13,7 +13,7 @@ public class VueContact extends Activity {
     private DbContact Db;
     private ListView listView2;
 
-    private Intent SmaIntent = new Intent(Intent.ACTION_SEND);
+    private Intent SmsIntent = new Intent(Intent.ACTION_SEND);
     private Intent Loca = new Intent(Intent.ACTION_VIEW);
 
     protected void onCreate(Bundle savedInstanceState){
@@ -35,7 +35,9 @@ public class VueContact extends Activity {
 
     }
 
-   /* public void loca(){
+    /*public void loca(){
+        Cursor SelectedTaskCursor = (Cursor) listView2.getItemAtPosition(pos);
+
         Loca.putExtra(SearchManager.QUERY,"");
         Uri location = Uri.parse("geo:0,0?q="+Uri.encode(SelectedTask));
         Loca.setData(location);
