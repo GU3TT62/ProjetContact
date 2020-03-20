@@ -218,6 +218,7 @@ public class DbContact {
         args.put(KEY_ADRESS, adresse);
         args.put(KEY_TEL, tel);
         args.put(KEY_MAIL, mail);
+        args.put(KEY_MAIL, mail);
 
         args.put(Key_FAV, fav);
 
