@@ -8,30 +8,58 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 public class VueContact extends Activity {
     private DbContact Db;
     private ListView listView2;
 
-    private Intent SmsIntent = new Intent(Intent.ACTION_SEND);
-    private Intent Loca = new Intent(Intent.ACTION_VIEW);
+    private Intent smsIntent;
+    private Intent loca;
+
+    private TextView prenomtx;
+    private TextView nomtx;
+    private TextView adressetx;
+    private TextView teltx;
+    private TextView mailtx;
+
+
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vuecontact);
+
         Intent i=getIntent();
+        loca = new Intent(Intent.ACTION_VIEW);
         long idContact=i.getLongExtra("ID_CONTACT",-1);
 
-        listView2 =  findViewById(R.id.VueContact);
+        prenomtx=findViewById(R.id.Prenom);
+        nomtx=findViewById(R.id.Nom);
+        adressetx=findViewById(R.id.Adresse);
+        teltx=findViewById(R.id.Telephone);
+
+        Db=new DbContact(this);
+        Db.open();
+
+        //listView2 =  findViewById(R.id.VueContact);
 
         Cursor c = Db.fetchContact(idContact);
-        startManagingCursor(c);
+       // startManagingCursor(c);
+        if (c.moveToFirst()) {
+            String id = c.getString( c.getColumnIndex(Db.KEY_ROWID) );
+            String prenom = c.getString(c.getColumnIndex(Db.KEY_PRENOM));
+            String nom=c.getString(c.getColumnIndex(Db.KEY_NOM));
+            String adresse=c.getString(c.getColumnIndex(Db.KEY_ADRESS));
+            String telephone=c.getString(c.getColumnIndex(Db.KEY_TEL));
+            String mail=c.getString(c.getColumnIndex(Db.KEY_MAIL));
+            prenomtx.setText(prenom);
+            nomtx.setText(nom);
+            adressetx.setText(adresse);
+            teltx.setText(telephone);
+            mailtx.setText(mail);
 
-        String[] from2 = new String[] { DbContact.KEY_NOM,DbContact.KEY_PRENOM,DbContact.KEY_TEL, DbContact.KEY_ADRESS,DbContact.KEY_MAIL,DbContact.Key_FAV};
-        int[] to2 = new int[] { R.id.champ1,R.id.champ2,R.id.champ3,R.id.champ4,R.id.champ5,R.id.champ6 };
+        }
 
-        SimpleCursorAdapter vuecontact = new SimpleCursorAdapter(this, R.layout.vuecontact, c, from2, to2);
-        listView2.setAdapter(vuecontact);
 
     }
 

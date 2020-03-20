@@ -42,7 +42,7 @@ public class DbContact {
     public static final String KEY_ADRESS = "adresse";
     public static final String KEY_TEL = "tel";
     public static final String Key_FAV = "fav";
-    public static final String KEY_MAIL = "fav";
+    public static final String KEY_MAIL = "mail";
 
 
 
