@@ -115,6 +115,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void getFavs(View view){
+        fillDataFav();
+    }
+
+    private void getContacts(View view){
+        fillData();
+    }
+
     //up
     private void fillDataFav() {
         // Get all of the notes from the database and create the item list
@@ -145,6 +153,8 @@ public class MainActivity extends AppCompatActivity {
                 fillData();
                 return true;
             case R.id.fav:
+                Db.addFav(info.id);
+                fillData();
                 return true;
             default:
                 return super.onContextItemSelected(item);
