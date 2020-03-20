@@ -37,7 +37,7 @@ public class VueContact extends Activity {
         nomtx=findViewById(R.id.Nom);
         adressetx=findViewById(R.id.Adresse);
         teltx=findViewById(R.id.Telephone);
-
+        mailtx=findViewById(R.id.Mail);
         Db=new DbContact(this);
         Db.open();
 
