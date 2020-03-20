@@ -5,7 +5,7 @@
     <string name="fav">Favoris</string>
     <string name="contact">Contacts</string>
     <string name="sms">Sms</string>
-    <string name="phone">Phone</string>
+    <string name="phone">Telephone</string>
     <string name="photo">Photo</string>
     <string name="ajoutContact">Ajouter Un contact</string>
     <string name="nom">Nom</string>
@@ -15,6 +15,8 @@
     <string name="mail">Mail</string>
     <string name="SendMAil">Envoyer un mail</string>
     <string name="loca">Localiser</string>
+    <string name="modif">Modifier</string>
+
 
 
 
