@@ -28,6 +28,7 @@
         android:layout_marginLeft="57dp"
         android:layout_marginBottom="4dp"
         android:contentDescription="@string/phone"
+        android:onClick="Call"
         android:text="@string/phone"
         app:layout_constraintBottom_toTopOf="@+id/modif"
         app:layout_constraintStart_toStartOf="@+id/modif" />
@@ -40,6 +41,7 @@
         android:layout_marginLeft="3dp"
         android:layout_marginBottom="4dp"
         android:contentDescription="@string/loca"
+        android:onClick="loca"
         android:text="@string/loca"
         app:layout_constraintBottom_toTopOf="@+id/modif"
         app:layout_constraintStart_toEndOf="@+id/mail" />

@@ -13,9 +13,8 @@ import android.widget.TextView;
 
 public class VueContact extends Activity {
     private DbContact Db;
-    private ListView listView2;
 
-    private Intent smsIntent;
+    private Intent callIntent;
     private Intent loca;
 
     private TextView prenomtx;
@@ -32,8 +31,9 @@ public class VueContact extends Activity {
 
         Intent i=getIntent();
         loca = new Intent(Intent.ACTION_VIEW);
-        long idContact=i.getLongExtra("ID_CONTACT",-1);
+        callIntent=new Intent(Intent.ACTION_DIAL);
 
+        long idContact=i.getLongExtra("ID_CONTACT",-1);
         prenomtx=findViewById(R.id.Prenom);
         nomtx=findViewById(R.id.Nom);
         adressetx=findViewById(R.id.Adresse);
@@ -68,14 +68,27 @@ public class VueContact extends Activity {
 
     }
 
-    /*public void loca(){
-        Cursor SelectedTaskCursor = (Cursor) listView2.getItemAtPosition(pos);
+    public void loca(View view){
+        String SelectedTaskCursor = (String) adressetx.getText().toString();
+        /*final String SelectedTask =
+                SelectedTaskCursor.getString(SelectedTaskCursor.getColumnIndex(Db.KEY_ADRESS));*/
 
-        Loca.putExtra(SearchManager.QUERY,"");
-        Uri location = Uri.parse("geo:0,0?q="+Uri.encode(SelectedTask));
-        Loca.setData(location);
-        startActivity(Loca);
-    }*/
+
+        loca.putExtra(SearchManager.QUERY,"");
+        Uri location = Uri.parse("geo:0,0?q="+Uri.encode(SelectedTaskCursor));
+        loca.setData(location);
+        startActivity(loca);
+    }
+    public void Call(View view){
+        String SelectedTaskCursor = (String) teltx.getText().toString();
+        /*final String SelectedTask =
+                SelectedTaskCursor.getString(SelectedTaskCursor.getColumnIndex(Db.KEY_ADRESS));*/
+
+        callIntent.setData(Uri.parse("tel:"+SelectedTaskCursor));
+
+
+        startActivity(callIntent);
+    }
 
 
 
