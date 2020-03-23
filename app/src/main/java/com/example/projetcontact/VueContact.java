@@ -15,7 +15,9 @@ public class VueContact extends Activity {
     private DbContact Db;
 
     private Intent callIntent;
+    private Intent smsIntent;
     private Intent loca;
+    private Intent mailIntent;
 
     private TextView prenomtx;
     private TextView nomtx;
@@ -32,6 +34,8 @@ public class VueContact extends Activity {
         Intent i=getIntent();
         loca = new Intent(Intent.ACTION_VIEW);
         callIntent=new Intent(Intent.ACTION_DIAL);
+        smsIntent=new Intent(Intent.ACTION_VIEW);
+        mailIntent=new Intent(Intent.ACTION_SEND);
 
         long idContact=i.getLongExtra("ID_CONTACT",-1);
         prenomtx=findViewById(R.id.Prenom);
@@ -83,11 +87,21 @@ public class VueContact extends Activity {
         String SelectedTaskCursor = (String) teltx.getText().toString();
         /*final String SelectedTask =
                 SelectedTaskCursor.getString(SelectedTaskCursor.getColumnIndex(Db.KEY_ADRESS));*/
-
         callIntent.setData(Uri.parse("tel:"+SelectedTaskCursor));
-
-
         startActivity(callIntent);
+    }
+    public void Sms(View view){
+        String SelectedTaskCursor = (String) teltx.getText().toString();
+        /*final String SelectedTask =
+                SelectedTaskCursor.getString(SelectedTaskCursor.getColumnIndex(Db.KEY_ADRESS));*/
+        smsIntent.setData(Uri.parse("sms:"+SelectedTaskCursor));
+        startActivity(smsIntent);
+    }public void Email(View view){
+        String SelectedTaskCursor = (String) mailtx.getText().toString();
+        mailIntent.setType("message/rfc822");
+        mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{SelectedTaskCursor});
+
+        startActivity(mailIntent);
     }
 
 
