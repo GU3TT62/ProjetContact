@@ -6,9 +6,24 @@
         android:title="Supprimer"
         />
     <item
-        android:id="@+id/fav"
+        android:id="@+id/sms"
         android:orderInCategory="100"
-        android:title="Ajout Favoris"
+        android:title="Envoi sms"
+        />
+    <item
+        android:id="@+id/appel"
+        android:orderInCategory="100"
+        android:title="Appeler"
+        />
+    <item
+        android:id="@+id/mail"
+        android:orderInCategory="100"
+        android:title="Envoyer un mail"
+        />
+    <item
+        android:id="@+id/localiser"
+        android:orderInCategory="100"
+        android:title="Localiser"
         />
 
 </menu>

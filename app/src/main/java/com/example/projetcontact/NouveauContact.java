@@ -43,12 +43,21 @@ public class NouveauContact extends AppCompatActivity {
 
     }
     public void nouveauContact(View view) {
-
+        //cette fonction permet d'envoyer les donner a mettre dans la BDD pour ajouter un contact
         Db.createContact(nom.getText().toString(), prenom.getText().toString(),adresse.getText().toString(),tel.getText().toString(),mail.getText().toString(),fav);
         startActivity(new Intent(this, MainActivity.class));
 
 
     }
+  /*  nom.setOnFocusChangeListener(newOnFocusChangeListener(){
+        @Override
+        public void onFocusChange(View v ,boolean hasFocus){
+            if(!hasFocus){
+                // code to execute when EditText loses focus
+                //(APPELER LA FONCTION DE VALIDATION)
+            }
+        }
+    });*/
 
 
 

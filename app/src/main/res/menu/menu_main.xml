@@ -8,6 +8,6 @@
         android:id="@+id/action_favs"
         android:title="@string/fav"/>
     <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"/>
+        android:id="@+id/supprimer_tout"
+        android:title="@string/supprimer_tout"/>
 </menu>

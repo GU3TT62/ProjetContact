@@ -2,9 +2,11 @@ package com.example.projetcontact;
 
 
 import android.app.AlertDialog;
+import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*Recuperation des id des edit text*/
         nom =  findViewById(R.id.Nom);
         prenom =  findViewById(R.id.Prenom);
         tel =  findViewById(R.id.Tel);
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         Db.open();
         fillData();
     }
+    /*fonction pour ajouter un contact en amenant à la page NouveauContact qui nous demande les infos à saisir*/
     public void add(View view) {
 
         startActivity(new Intent(this, NouveauContact.class));
@@ -61,10 +65,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    //Au clic sur un contact on accede aux informations de ce contact
     private ListView.OnItemClickListener vueContactOnClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+            //on definit la page ou serint affichés les infos sur le contact
             Intent i=new Intent(MainActivity.this,VueContact.class);
             i.putExtra("ID_CONTACT",id);
             startActivity(i);
@@ -76,31 +81,48 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
+    //création d'un context menu lors d'un long appui sur un item sur la liste pour savoir si on veut ajouter un contact aux favoris ou si on veut le supprimer
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.item, menu);
+        inflater.inflate(R.menu.item, menu);//on recupere les items du menu
     }
 
     @Override
+    //declaration de l'option menu
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
+    //déclaration du menu permettant de tout supprimer
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatic private ally handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        /*if (id == R.id.action_settings) {
-            return true;
-        }*/
-
+        switch (item.getItemId()) {//si l'id correspond à efface_tout alors on cré une boite de dialogue
+            case R.id.supprimer_tout:
+                new AlertDialog.Builder(MainActivity.this)//
+                        .setTitle("Confirmation")//titre
+                        .setMessage("Êtes-vous sûr de vouloir tout supprimer?")//message
+                        .setNegativeButton(R.string.annuler, new DialogInterface.OnClickListener() {//bouton non
+                            public void onClick(DialogInterface dialog, int which) {//donner action au bouton
+                                Toast.makeText(MainActivity.this, getString(R.string.annuler), Toast.LENGTH_LONG).show();
+                                //def msg apres annulation
+                            }
+                        })
+                        .setPositiveButton(R.string.valider, new DialogInterface.OnClickListener() {//bouton valide
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(MainActivity.this, getString(R.string.sup), Toast.LENGTH_LONG).show();
+                                //todoItems.clear();//1 ceci supprime tous les items de la liste
+                                //aa.notifyDataSetChanged();//2 ceci met a jour la liste
+                                Db.deleteAllContact();
+                                fillData();
+                            }
+                        })
+                        .show();//permet d'afficher la box
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -154,15 +176,74 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+        final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+        Cursor c=Db.fetchContact(info.id);
+        startManagingCursor(c);
+
         switch (item.getItemId()) {
             case R.id.supp:
-                Db.deleteContact(info.id);
-                fillData();
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Confirmation")//titre
+                        .setMessage("Êtes-vous sûr de vouloir supprimer cet item ?")//message
+                        .setNegativeButton(R.string.annuler, new DialogInterface.OnClickListener(){//bouton non
+                            public void onClick(DialogInterface dialog, int which){//donner action au bouton
+                                Toast.makeText(MainActivity.this,getString(R.string.annuler),Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .setPositiveButton(R.string.valider, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(MainActivity.this,getString(R.string.sup),Toast.LENGTH_LONG).show();
+                                Db.deleteContact(info.id);
+                                fillData();
+                            }
+                        })
+                        .show();
+            case R.id.appel://ICI on appelle le contact via le menu contextuel
+
+
+                String appel=c.getString(c.getColumnIndex(Db.KEY_TEL));
+
+                Intent callIntent=new Intent(Intent.ACTION_DIAL);
+
+                callIntent.setData(Uri.parse("tel:"+appel));
+                startActivity(callIntent);
+
                 return true;
             case R.id.fav:
                 Db.addFav(info.id);
                 fillData();
+                return true;
+            case R.id.sms://ICI on envoie un sms le contact via le menu contextuel
+
+                String sms=c.getString(c.getColumnIndex(Db.KEY_TEL));
+
+                Intent smsIntent=new Intent(Intent.ACTION_VIEW);
+
+                smsIntent.setData(Uri.parse("sms:"+sms));
+                startActivity(smsIntent);
+
+                return true;
+            case R.id.mail://ICI on envoie un mail le contact via le menu contextuel
+
+                String mail=c.getString(c.getColumnIndex(Db.KEY_MAIL));
+
+                Intent mailIntent=new Intent(Intent.ACTION_SEND);
+                mailIntent.setType("message/rfc822");
+                mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{mail});
+                startActivity(mailIntent);
+
+                return true;
+            case R.id.loca://ICI on localise le contact via le menu contextuel
+
+                String loc=c.getString(c.getColumnIndex(Db.KEY_ADRESS));
+
+                Intent loca = new Intent(Intent.ACTION_VIEW);
+                loca.putExtra(SearchManager.QUERY,"");
+                Uri location = Uri.parse("geo:0,0?q="+Uri.encode(loc));
+                loca.setData(location);
+                startActivity(loca);
+
                 return true;
             default:
                 return super.onContextItemSelected(item);

@@ -26,6 +26,7 @@
         android:layout_marginTop="60dp"
         android:ems="10"
         android:hint="@string/nom"
+        android:importantForAccessibility="yes"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
