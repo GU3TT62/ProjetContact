@@ -118,13 +118,18 @@ public class MainActivity extends AppCompatActivity {
                         })
                         .show();//permet d'afficher la box
             case R.id.action_favs:
+                listView.setVisibility(View.GONE);
+                listView.setVisibility(View.VISIBLE);
+
+                /*
                 if(listView.getVisibility()==View.VISIBLE){
-                    listView.setVisibility(View.INVISIBLE);
+                    listView.setVisibility(View.GONE);
                     listView.setVisibility(View.VISIBLE);
                 }else{
                     listView.setVisibility(View.VISIBLE);
-                    listView.setVisibility(View.INVISIBLE);
+                    listView.setVisibility(View.GONE);
                 }
+                 */
 
         }
         return super.onOptionsItemSelected(item);
