@@ -11,7 +11,9 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-public class VueContact extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class VueContact  extends AppCompatActivity {
     private DbContact Db;
 
     private Intent callIntent;
@@ -67,10 +69,7 @@ public class VueContact extends Activity {
 
 
     }
-    public void retour(View view){
-        startActivity(new Intent(this, MainActivity.class));
 
-    }
 
     public void loca(View view){
         String SelectedTaskCursor = (String) adressetx.getText().toString();
