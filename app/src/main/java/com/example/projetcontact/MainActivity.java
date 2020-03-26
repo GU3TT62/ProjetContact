@@ -115,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
                             }
                         })
                         .show();//permet d'afficher la box
+            case R.id.action_favs:
+                fillDataFav();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -226,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(mailIntent);
 
                 return true;
-            case R.id.loca://ICI on localise le contact via le menu contextuel
+            case R.id.localiser://ICI on localise le contact via le menu contextuel
 
                 String loc=(String)c.getString(c.getColumnIndex(Db.KEY_ADRESS));
 

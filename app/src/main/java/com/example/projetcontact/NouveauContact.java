@@ -48,6 +48,10 @@ public class NouveauContact extends AppCompatActivity {
         //cette fonction permet d'envoyer les donner a mettre dans la BDD pour ajouter un contact
         String name = nom.getText().toString();
         String phone = tel.getText().toString();
+        int favInt=0;
+        if(fav){
+            favInt=1;
+        }
         if(ValidateName(name)&&ValidatePhone(phone)){//On verifie que les champs nom et telephone ne sont pas vide
             Db.createContact(name, prenom.getText().toString(),adresse.getText().toString(),phone,mail.getText().toString(),fav);
             startActivity(new Intent(this, MainActivity.class));

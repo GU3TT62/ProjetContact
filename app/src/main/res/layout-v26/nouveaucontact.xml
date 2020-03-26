@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
@@ -8,8 +9,9 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="441dp"
-        android:layout_height="81dp"
+        android:layout_width="459dp"
+        android:layout_height="40dp"
+
         android:gravity="center"
         android:text="@string/ajoutContact"
         android:textSize="35sp"
@@ -17,32 +19,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <EditText
         android:id="@+id/Nom"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="60dp"
         android:ems="10"
-        android:autofillHints="@string/nom"
         android:hint="@string/nom"
+        android:importantForAccessibility="yes"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <EditText
         android:id="@+id/Prenom"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="@string/prenom"
-        android:autofillHints="@string/prenom"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Nom" />
 
@@ -50,9 +48,9 @@
         android:id="@+id/Tel"
         android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="28dp"
         android:ems="10"
-        android:hint="Tel"
+        android:hint="@string/tel"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -63,34 +61,51 @@
         android:id="@+id/adresse"
         android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="28dp"
         android:ems="10"
-        android:hint="Adresse"
+        android:hint="@string/adress"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Tel" />
 
+    <EditText
+        android:id="@+id/Mail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="@string/mail"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adresse" />
+
+
     <CheckBox
         android:id="@+id/fav"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="184dp"
-        android:text="fav"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="44dp"
+
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:text="@string/fav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adresse"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Mail" />
 
     <Button
         android:id="@+id/ajout"
         android:layout_width="188dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginTop="40dp"
         android:onClick="nouveauContact"
-        android:text="Ajout"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/ajoutContact"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fav" />
 </androidx.constraintlayout.widget.ConstraintLayout>
