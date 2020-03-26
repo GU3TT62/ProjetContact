@@ -26,7 +26,7 @@ public class VueContact  extends AppCompatActivity {
     private TextView adressetx;
     private TextView teltx;
     private TextView mailtx;
-
+    private Cursor c;
 
 
     protected void onCreate(Bundle savedInstanceState){
@@ -48,10 +48,8 @@ public class VueContact  extends AppCompatActivity {
         Db=new DbContact(this);
         Db.open();
 
-        //listView2 =  findViewById(R.id.VueContact);
 
-        Cursor c = Db.fetchContact(idContact);
-       // startManagingCursor(c);
+        c = Db.fetchContact(idContact);
         if (c.moveToFirst()) {
             String id = c.getString( c.getColumnIndex(Db.KEY_ROWID) );
             String prenom = c.getString(c.getColumnIndex(Db.KEY_PRENOM));
@@ -66,11 +64,7 @@ public class VueContact  extends AppCompatActivity {
             mailtx.setText(mail);
 
         }
-
-
     }
-
-
     public void loca(View view){
         String SelectedTaskCursor = (String) adressetx.getText().toString();
 
@@ -94,14 +88,19 @@ public class VueContact  extends AppCompatActivity {
         mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{SelectedTaskCursor});
         startActivity(mailIntent);
     }
+    public void modifier(View view){
+        Intent i=getIntent();
+        long idContact=i.getLongExtra("ID_CONTACT",-1);
+        c = Db.fetchContact(idContact);
+        String id = c.getString( c.getColumnIndex(Db.KEY_ROWID) );
+        Intent intent=new Intent(VueContact.this,modif.class);
+        intent.putExtra("ID_CONTACT",id);
+        startActivity(intent);
+
+
+    }
 
 
 
 
-    /*webIntent.putExtra(SearchManager.QUERY,SelectedTask);
-    startActivity(webIntent);
-                                    mode.finish();
-                                    return true;
-                                case R.id.map:
-    //*/
 }

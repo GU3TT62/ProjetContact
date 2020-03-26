@@ -8,6 +8,8 @@
     <string name="phone">Telephone</string>
     <string name="photo">Photo</string>
     <string name="ajoutContact">Ajouter Un contact</string>
+    <string name="modifContact">Modifier Un contact</string>
+
     <string name="nom">Nom</string>
     <string name="prenom">Prénom</string>
     <string name="tel">Téléphone</string>

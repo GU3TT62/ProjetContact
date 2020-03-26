@@ -13,7 +13,7 @@
         android:layout_height="40dp"
 
         android:gravity="center"
-        android:text="@string/ajoutContact"
+        android:text="@string/modifContact"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,8 +102,8 @@
         android:layout_width="188dp"
         android:layout_height="45dp"
         android:layout_marginTop="40dp"
-        android:onClick="nouveauContact"
-        android:text="@string/ajoutContact"
+        android:onClick="modifierContact"
+        android:text="@string/modifContact"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fav" />
