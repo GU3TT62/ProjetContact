@@ -2,6 +2,7 @@ package com.example.projetcontact;
 
 
 import android.app.AlertDialog;
+import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,7 +26,7 @@ import android.widget.SimpleCursorAdapter;
 public class MainActivity extends AppCompatActivity {
 
     private ListView listView;
-
+    private ListView listViewFav;
 
     private DbContact Db;
 
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         tel =  findViewById(R.id.Tel);
 
         listView =  findViewById(R.id.ListContact);
+        listViewFav = findViewById(R.id.ListFavs);
         listView.setOnItemClickListener(vueContactOnClick);
 
         registerForContextMenu(listView);
@@ -116,56 +118,34 @@ public class MainActivity extends AppCompatActivity {
                         })
                         .show();//permet d'afficher la box
             case R.id.action_favs:
-                fillDataFav();
+                if(listView.getVisibility()==View.VISIBLE){
+                    listView.setVisibility(View.INVISIBLE);
+                    listView.setVisibility(View.VISIBLE);
+                }else{
+                    listView.setVisibility(View.VISIBLE);
+                    listView.setVisibility(View.INVISIBLE);
+                }
+
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void fillData() {
         // Get all of the notes from the database and create the item list
-        Cursor c = Db.fetchAllContact();
-        startManagingCursor(c);
+        Cursor c1 = Db.fetchAllContact();
+        Cursor c2 = Db.fetchFavs();
+        startManagingCursor(c1);
+        startManagingCursor(c2);
 
         String[] from = new String[] { DbContact.KEY_NOM,DbContact.KEY_PRENOM};
         int[] to = new int[] { R.id.champ2,R.id.champ1 };
 
-
-
         // Now create an array adapter and set it to display using our row
 
-        SimpleCursorAdapter contact = new SimpleCursorAdapter(this, R.layout.contact, c, from, to);
+        SimpleCursorAdapter contact = new SimpleCursorAdapter(this, R.layout.contact, c1, from, to);
+        SimpleCursorAdapter favs = new SimpleCursorAdapter(this, R.layout.contact, c2, from, to);
         listView.setAdapter(contact);
-
-
-
-    }
-
-    private void getFavs(View view){
-        fillDataFav();
-    }
-
-    private void getContacts(View view){
-        fillData();
-    }
-
-    //up
-    private void fillDataFav() {
-        // Get all of the notes from the database and create the item list
-        Cursor c = Db.fetchFavs();
-        startManagingCursor(c);
-
-        String[] from = new String[] { DbContact.KEY_NOM,DbContact.KEY_PRENOM};
-        int[] to = new int[] { R.id.champ2,R.id.champ1 };
-
-
-
-        // Now create an array adapter and set it to display using our row
-
-        SimpleCursorAdapter contact = new SimpleCursorAdapter(this, R.layout.contact, c, from, to);
-        listView.setAdapter(contact);
-
-
-
+        listViewFav.setAdapter(favs);
     }
 
 
