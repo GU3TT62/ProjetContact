@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProjetContact</string>
+    <string name="app_name">Mes Contact</string>
     <string name="supprimer_tout">Tout supprimer</string>
     <string name="nouveauContact">Nouveau Contact</string>
     <string name="fav">Favoris</string>

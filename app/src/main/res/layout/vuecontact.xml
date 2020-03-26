@@ -19,7 +19,7 @@
         app:layout_constraintStart_toEndOf="@+id/button"
         android:src="@drawable/test"
         app:layout_constraintTop_toTopOf="@+id/button"
-        tools:srcCompat="@tools:sample/avatars" />
+         />
 
     <Button
         android:id="@+id/appel"
