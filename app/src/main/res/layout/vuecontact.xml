@@ -17,6 +17,7 @@
         android:contentDescription="@string/photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button"
+        android:src="@drawable/test"
         app:layout_constraintTop_toTopOf="@+id/button"
         tools:srcCompat="@tools:sample/avatars" />
 
