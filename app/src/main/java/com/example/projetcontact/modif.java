@@ -74,10 +74,10 @@ public class modif extends AppCompatActivity {
 
         i=getIntent();
         c = Db.fetchContact(idContact);
-        //String id1 = c.getString( c.getColumnIndex(Db.KEY_ROWID) );
+        long id1 = c.getLong( c.getColumnIndex(Db.KEY_ROWID) );
         //long id=Long.parseLong(id1);
         if(ValidateName(name)&&ValidatePhone(phone)){//On verifie que les champs nom et telephone ne sont pas vide
-            Db.updateContact(idContact,name, prenomtx.getText().toString(),adressetx.getText().toString(),phone,mailtx.getText().toString(),fav);
+            Db.updateContact(id1,name, prenomtx.getText().toString(),adressetx.getText().toString(),phone,mailtx.getText().toString(),fav);
             startActivity(new Intent(this, MainActivity.class));
 
         }

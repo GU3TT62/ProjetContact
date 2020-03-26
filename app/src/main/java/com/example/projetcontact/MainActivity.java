@@ -224,6 +224,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(loca);
 
                 return true;
+            case R.id.menumodif:
+                Intent intent=new Intent(MainActivity.this,modif.class);
+                intent.putExtra("ID_CONTACT",info.id);
+                startActivity(intent);
             default:
                 return super.onContextItemSelected(item);
         }

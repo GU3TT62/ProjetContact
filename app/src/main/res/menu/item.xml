@@ -25,5 +25,10 @@
         android:orderInCategory="100"
         android:title="Localiser"
         />
+    <item
+        android:id="@+id/menumodif"
+        android:orderInCategory="100"
+        android:title="Modifier"
+        />
 
 </menu>
