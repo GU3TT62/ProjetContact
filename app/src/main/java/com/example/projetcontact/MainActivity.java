@@ -21,8 +21,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -107,16 +105,11 @@ public class MainActivity extends AppCompatActivity {
                         .setMessage("Êtes-vous sûr de vouloir tout supprimer?")//message
                         .setNegativeButton(R.string.annuler, new DialogInterface.OnClickListener() {//bouton non
                             public void onClick(DialogInterface dialog, int which) {//donner action au bouton
-                                Toast.makeText(MainActivity.this, getString(R.string.annuler), Toast.LENGTH_LONG).show();
-                                //def msg apres annulation
                             }
                         })
                         .setPositiveButton(R.string.valider, new DialogInterface.OnClickListener() {//bouton valide
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(MainActivity.this, getString(R.string.sup), Toast.LENGTH_LONG).show();
-                                //todoItems.clear();//1 ceci supprime tous les items de la liste
-                                //aa.notifyDataSetChanged();//2 ceci met a jour la liste
                                 Db.deleteAllContact();
                                 fillData();
                             }
@@ -132,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         startManagingCursor(c);
 
         String[] from = new String[] { DbContact.KEY_NOM,DbContact.KEY_PRENOM};
-        int[] to = new int[] { R.id.champ1,R.id.champ2 };
+        int[] to = new int[] { R.id.champ2,R.id.champ1 };
 
 
 
@@ -160,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         startManagingCursor(c);
 
         String[] from = new String[] { DbContact.KEY_NOM,DbContact.KEY_PRENOM};
-        int[] to = new int[] { R.id.champ1,R.id.champ2 };
+        int[] to = new int[] { R.id.champ2,R.id.champ1 };
 
 
 
@@ -187,18 +180,17 @@ public class MainActivity extends AppCompatActivity {
                         .setMessage("Êtes-vous sûr de vouloir supprimer cet item ?")//message
                         .setNegativeButton(R.string.annuler, new DialogInterface.OnClickListener(){//bouton non
                             public void onClick(DialogInterface dialog, int which){//donner action au bouton
-                                Toast.makeText(MainActivity.this,getString(R.string.annuler),Toast.LENGTH_LONG).show();
                             }
                         })
                         .setPositiveButton(R.string.valider, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(MainActivity.this,getString(R.string.sup),Toast.LENGTH_LONG).show();
                                 Db.deleteContact(info.id);
                                 fillData();
                             }
                         })
                         .show();
+                return true;
             case R.id.appel://ICI on appelle le contact via le menu contextuel
 
 
@@ -236,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.loca://ICI on localise le contact via le menu contextuel
 
-                String loc=c.getString(c.getColumnIndex(Db.KEY_ADRESS));
+                String loc=(String)c.getString(c.getColumnIndex(Db.KEY_ADRESS));
 
                 Intent loca = new Intent(Intent.ACTION_VIEW);
                 loca.putExtra(SearchManager.QUERY,"");

@@ -74,9 +74,6 @@ public class VueContact extends Activity {
 
     public void loca(View view){
         String SelectedTaskCursor = (String) adressetx.getText().toString();
-        /*final String SelectedTask =
-                SelectedTaskCursor.getString(SelectedTaskCursor.getColumnIndex(Db.KEY_ADRESS));*/
-
 
         loca.putExtra(SearchManager.QUERY,"");
         Uri location = Uri.parse("geo:0,0?q="+Uri.encode(SelectedTaskCursor));
@@ -85,22 +82,17 @@ public class VueContact extends Activity {
     }
     public void Call(View view){
         String SelectedTaskCursor = (String) teltx.getText().toString();
-        /*final String SelectedTask =
-                SelectedTaskCursor.getString(SelectedTaskCursor.getColumnIndex(Db.KEY_ADRESS));*/
         callIntent.setData(Uri.parse("tel:"+SelectedTaskCursor));
         startActivity(callIntent);
     }
     public void Sms(View view){
         String SelectedTaskCursor = (String) teltx.getText().toString();
-        /*final String SelectedTask =
-                SelectedTaskCursor.getString(SelectedTaskCursor.getColumnIndex(Db.KEY_ADRESS));*/
         smsIntent.setData(Uri.parse("sms:"+SelectedTaskCursor));
         startActivity(smsIntent);
     }public void Email(View view){
         String SelectedTaskCursor = (String) mailtx.getText().toString();
         mailIntent.setType("message/rfc822");
         mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{SelectedTaskCursor});
-
         startActivity(mailIntent);
     }
 
