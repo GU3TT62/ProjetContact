@@ -2,7 +2,6 @@ package com.example.projetcontact;
 
 
 import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -98,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     //déclaration du menu permettant de tout supprimer
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
         switch (item.getItemId()) {//si l'id correspond à efface_tout alors on cré une boite de dialogue
             case R.id.supprimer_tout:
@@ -184,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.appel://ICI on appelle le contact via le menu contextuel
 
 
-                String appel=c.getString(c.getColumnIndex(Db.KEY_TEL));
+                String appel=c.getString(c.getColumnIndex(DbContact.KEY_TEL));
 
                 Intent callIntent=new Intent(Intent.ACTION_DIAL);
 
@@ -198,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.sms://ICI on envoie un sms le contact via le menu contextuel
 
-                String sms=c.getString(c.getColumnIndex(Db.KEY_TEL));
+                String sms=c.getString(c.getColumnIndex(DbContact.KEY_TEL));
 
                 Intent smsIntent=new Intent(Intent.ACTION_VIEW);
 
@@ -208,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.mail://ICI on envoie un mail le contact via le menu contextuel
 
-                String mail=c.getString(c.getColumnIndex(Db.KEY_MAIL));
+                String mail=c.getString(c.getColumnIndex(DbContact.KEY_MAIL));
 
                 Intent mailIntent=new Intent(Intent.ACTION_SEND);
                 mailIntent.setType("message/rfc822");
@@ -218,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.localiser://ICI on localise le contact via le menu contextuel
 
-                String loc=(String)c.getString(c.getColumnIndex(Db.KEY_ADRESS));
+                String loc=(String)c.getString(c.getColumnIndex(DbContact.KEY_ADRESS));
 
                 Intent loca = new Intent(Intent.ACTION_VIEW);
                 loca.putExtra(SearchManager.QUERY,"");

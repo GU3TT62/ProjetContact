@@ -37,18 +37,14 @@ public class NouveauContact extends AppCompatActivity {
         Db=new DbContact(this);
         Db.open();
         final CheckBox checkBox =  findViewById(R.id.fav);
-        if (checkBox.isChecked()) {
-            fav=true;
-        }else{
-            fav=false;
-        }
+        fav= checkBox.isChecked();
 
     }
     public void nouveauContact(View view) {
         //cette fonction permet d'envoyer les donner a mettre dans la BDD pour ajouter un contact
         String name = nom.getText().toString();
         String phone = tel.getText().toString();
-        if(ValidateName(name)&&ValidatePhone(phone)){//On verifie que les champs nom et telephone ne sont pas vide
+        if(ValidateName()&&ValidatePhone()){//On verifie que les champs nom et telephone ne sont pas vide
             Db.createContact(name, prenom.getText().toString(),adresse.getText().toString(),phone,mail.getText().toString(),fav);
             startActivity(new Intent(this, MainActivity.class));
 
@@ -59,8 +55,8 @@ public class NouveauContact extends AppCompatActivity {
 
 
 
-    public boolean ValidateName(String name) {
-        name = nom.getText().toString();
+    public boolean ValidateName() {
+        String name = nom.getText().toString();
 
         boolean validate = true;
         if(name.equals("")){
@@ -71,8 +67,8 @@ public class NouveauContact extends AppCompatActivity {
         return validate;
     }//on valide ici le champ nom s'il n'est pas vide
 
-    public boolean ValidatePhone(String phone){
-        phone = tel.getText().toString();
+    public boolean ValidatePhone(){
+        String phone = tel.getText().toString();
 
         boolean validate = true;
          if(phone.equals("")){
@@ -82,7 +78,7 @@ public class NouveauContact extends AppCompatActivity {
 
          }else if(validate==true){
             try{
-                int test = Integer.parseInt(phone);
+                Integer.parseInt(phone);
             }catch(NumberFormatException e){
                 String message="Il faut que le telephone soit un nombre pour que cela fonctionne";
                 SendMessage(message);

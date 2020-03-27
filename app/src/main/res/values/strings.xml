@@ -7,8 +7,8 @@
     <string name="sms">Sms</string>
     <string name="phone">Telephone</string>
     <string name="photo">Photo</string>
-    <string name="ajoutContact">Ajouter Un contact</string>
-    <string name="modifContact">Modifier Un contact</string>
+    <string name="ajouterContact">Ajouter Un contact</string>
+    <string name="modificationContact">Modifier Un contact</string>
 
     <string name="nom">Nom</string>
     <string name="prenom">Prénom</string>
@@ -21,10 +21,13 @@
     <string name="valider">Valider</string>
     <string name="modif">Modifier</string>
     <string name="sup">Supprimé</string>
-
-
-
-
+    <string name="pre">Pre</string>
+    <string name="prenom2">Prenom</string>
+    <string name="adr">Adr</string>
+    <string name="adresse">Adresse</string>
+    <string name="tele">Tel</string>
+    <string name="telephone">Telephone</string>
+    <string name="qrcode">QrCode</string>
 
 
 </resources>

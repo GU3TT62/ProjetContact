@@ -13,7 +13,7 @@
         android:layout_height="40dp"
 
         android:gravity="center"
-        android:text="@string/ajoutContact"
+        android:text="@string/ajouterContact"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,8 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/Prenom"
@@ -41,7 +42,8 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Nom" />
+        app:layout_constraintTop_toBottomOf="@+id/Nom"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/Tel"
@@ -54,7 +56,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Prenom" />
+        app:layout_constraintTop_toBottomOf="@+id/Prenom"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/adresse"
@@ -67,7 +70,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Tel" />
+        app:layout_constraintTop_toBottomOf="@+id/Tel"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/Mail"
@@ -79,7 +83,8 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adresse" />
+        app:layout_constraintTop_toBottomOf="@+id/adresse"
+        android:importantForAutofill="no" />
 
 
     <CheckBox
@@ -104,7 +109,7 @@
         android:background="@drawable/button"
         android:layout_marginTop="40dp"
         android:onClick="nouveauContact"
-        android:text="@string/ajoutContact"
+        android:text="@string/ajouterContact"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

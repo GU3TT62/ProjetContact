@@ -18,26 +18,20 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
 public class VueContact  extends AppCompatActivity {
-    private DbContact db;
     private Intent callIntent;
     private Intent smsIntent;
     private Intent loca;
     private Intent mailIntent;
-    private Bitmap bitmap ;
 
     private String prenom;
     private String nom;
     private String telephone;
     private String adresse;
-    private String fav;
     private String mail;
 
-    private TextView prenomtx;
-    private TextView nomtx;
     private TextView adressetx;
     private TextView teltx;
     private TextView mailtx;
-    private Cursor c;
     private ImageView imageView;
 
     public final static int QRcodeWidth = 300 ;//taille du qr code
@@ -55,8 +49,8 @@ public class VueContact  extends AppCompatActivity {
 
         long idContact=i.getLongExtra("ID_CONTACT",-1);
 
-        prenomtx=findViewById(R.id.Prenom);
-        nomtx=findViewById(R.id.Nom);
+        TextView prenomtx = findViewById(R.id.Prenom);
+        TextView nomtx = findViewById(R.id.Nom);
         adressetx=findViewById(R.id.Adresse);
         teltx=findViewById(R.id.Telephone);
         mailtx=findViewById(R.id.Mail);
@@ -64,20 +58,19 @@ public class VueContact  extends AppCompatActivity {
         imageView = findViewById(R.id.imageView2);
 
 
-        db = new DbContact(this);
+        DbContact db = new DbContact(this);
         db.open();
 
 
-        c = db.fetchContact(idContact);
+        Cursor c = db.fetchContact(idContact);
         if (c.moveToFirst()) {
 
 
-            prenom = c.getString(c.getColumnIndex(db.KEY_PRENOM));
-            nom=c.getString(c.getColumnIndex(db.KEY_NOM));
-            adresse=c.getString(c.getColumnIndex(db.KEY_ADRESS));
-            telephone=c.getString(c.getColumnIndex(db.KEY_TEL));
-            mail=c.getString(c.getColumnIndex(db.KEY_MAIL));
-            fav=c.getString(c.getColumnIndex(db.Key_FAV));
+            prenom = c.getString(c.getColumnIndex(DbContact.KEY_PRENOM));
+            nom= c.getString(c.getColumnIndex(DbContact.KEY_NOM));
+            adresse= c.getString(c.getColumnIndex(DbContact.KEY_ADRESS));
+            telephone= c.getString(c.getColumnIndex(DbContact.KEY_TEL));
+            mail= c.getString(c.getColumnIndex(DbContact.KEY_MAIL));
 
 
             prenomtx.setText(prenom);
@@ -89,7 +82,7 @@ public class VueContact  extends AppCompatActivity {
         }
     }
     public void loca(View view){
-        String SelectedTaskCursor = (String) adressetx.getText().toString();
+        String SelectedTaskCursor =  adressetx.getText().toString();
 
         loca.putExtra(SearchManager.QUERY,"");
         Uri location = Uri.parse("geo:0,0?q="+Uri.encode(SelectedTaskCursor));
@@ -98,19 +91,19 @@ public class VueContact  extends AppCompatActivity {
     }//Activite permettant de localiser le contact
 
     public void Call(View view){
-        String SelectedTaskCursor = (String) teltx.getText().toString();
+        String SelectedTaskCursor =  teltx.getText().toString();
         callIntent.setData(Uri.parse("tel:"+SelectedTaskCursor));
         startActivity(callIntent);
     }//Activite permettant d'appeler le contact
 
     public void Sms(View view){
-        String SelectedTaskCursor = (String) teltx.getText().toString();
+        String SelectedTaskCursor =  teltx.getText().toString();
         smsIntent.setData(Uri.parse("sms:"+SelectedTaskCursor));
         startActivity(smsIntent);
     }//Activité permettant d'envoyer un sms au contact
 
     public void Email(View view){
-        String SelectedTaskCursor = (String) mailtx.getText().toString();
+        String SelectedTaskCursor =  mailtx.getText().toString();
         mailIntent.setType("message/rfc822");
         mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{SelectedTaskCursor});
         startActivity(mailIntent);
@@ -134,9 +127,8 @@ public class VueContact  extends AppCompatActivity {
                     +prenom+ System.getProperty ("line.separator")
                     +telephone+ System.getProperty ("line.separator")
                     +adresse+System.getProperty ("line.separator")
-                    +mail+System.getProperty ("line.separator")
-                    +fav+System.getProperty ("line.separator");
-            bitmap = TextToImageEncode(infos);//on met les informations à stocker dans bitmap
+                    +mail+System.getProperty ("line.separator");
+            Bitmap bitmap = TextToImageEncode(infos);//on met les informations à stocker dans bitmap
 
             imageView.setImageBitmap(bitmap);//on met notre bitmap dans l'image view
 
@@ -150,7 +142,7 @@ public class VueContact  extends AppCompatActivity {
         try {
             bitMatrix = new MultiFormatWriter().encode(
                     Value,
-                    BarcodeFormat.DATA_MATRIX.QR_CODE,
+                    BarcodeFormat.QR_CODE,
                     QRcodeWidth, QRcodeWidth, null
             );
 
