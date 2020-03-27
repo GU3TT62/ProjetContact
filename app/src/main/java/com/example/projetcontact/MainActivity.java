@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
         SimpleCursorAdapter favs = new SimpleCursorAdapter(this, R.layout.contact, c2, from, to);
         listView.setAdapter(contact);
         listViewFav.setAdapter(favs);
+        //On recupere les données des contacts présents dans la BDD Ici ils sont rangés par ordre alphabétique de noms
     }
 
 
