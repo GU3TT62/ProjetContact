@@ -28,6 +28,12 @@
     <string name="tele">Tel</string>
     <string name="telephone">Telephone</string>
     <string name="qrcode">QrCode</string>
+    <string name="supprimer">Supprimer</string>
+    <string name="envoi_sms">Envoi sms</string>
+    <string name="appeler">Appeler</string>
+    <string name="envoyer_un_mail">Envoyer un mail</string>
+    <string name="localiser">Localiser</string>
+    <string name="modifier">Modifier</string>
 
 
 </resources>

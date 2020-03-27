@@ -3,32 +3,32 @@
     <item
         android:id="@+id/supp"
         android:orderInCategory="100"
-        android:title="Supprimer"
+        android:title="@string/supprimer"
         />
     <item
         android:id="@+id/sms"
         android:orderInCategory="100"
-        android:title="Envoi sms"
+        android:title="@string/envoi_sms"
         />
     <item
         android:id="@+id/appel"
         android:orderInCategory="100"
-        android:title="Appeler"
+        android:title="@string/appeler"
         />
     <item
         android:id="@+id/mail"
         android:orderInCategory="100"
-        android:title="Envoyer un mail"
+        android:title="@string/envoyer_un_mail"
         />
     <item
         android:id="@+id/localiser"
         android:orderInCategory="100"
-        android:title="Localiser"
+        android:title="@string/localiser"
         />
     <item
         android:id="@+id/menumodif"
         android:orderInCategory="100"
-        android:title="Modifier"
+        android:title="@string/modifier"
         />
 
 </menu>
