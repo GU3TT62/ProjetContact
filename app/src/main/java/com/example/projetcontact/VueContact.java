@@ -72,22 +72,25 @@ public class VueContact  extends AppCompatActivity {
         Uri location = Uri.parse("geo:0,0?q="+Uri.encode(SelectedTaskCursor));
         loca.setData(location);
         startActivity(loca);
-    }
+    }//Activite permettant de localiser le contact
+
     public void Call(View view){
         String SelectedTaskCursor = (String) teltx.getText().toString();
         callIntent.setData(Uri.parse("tel:"+SelectedTaskCursor));
         startActivity(callIntent);
-    }
+    }//Activite permettant d'appeler le contact
+
     public void Sms(View view){
         String SelectedTaskCursor = (String) teltx.getText().toString();
         smsIntent.setData(Uri.parse("sms:"+SelectedTaskCursor));
         startActivity(smsIntent);
-    }public void Email(View view){
+    }//Activité permettant d'envoyer un sms au contact
+    public void Email(View view){
         String SelectedTaskCursor = (String) mailtx.getText().toString();
         mailIntent.setType("message/rfc822");
         mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{SelectedTaskCursor});
         startActivity(mailIntent);
-    }
+    }//Activité permettanr d'envoyer un mail au contact
     public void modifier(View view){
         Intent i=getIntent();
         long idContact=i.getLongExtra("ID_CONTACT",-1);
@@ -98,7 +101,7 @@ public class VueContact  extends AppCompatActivity {
         startActivity(intent);
 
 
-    }
+    }//activité permettan d'envoyer sur la page de modification d'un contact
 
 
 

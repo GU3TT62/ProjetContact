@@ -69,7 +69,8 @@ public class NouveauContact extends AppCompatActivity {
             SendMessage(message);
         }
         return validate;
-    }
+    }//on valide ici le champ nom s'il n'est pas vide
+
     public boolean ValidatePhone(String phone){
         phone = tel.getText().toString();
 
@@ -89,7 +90,7 @@ public class NouveauContact extends AppCompatActivity {
             }
          }
         return validate;
-    }
+    }//on valide ici le champ telephone s'il n'est pas vide et si c'est un entier
 
     private void SendMessage(String message) {
         Context context = getApplicationContext();
@@ -97,7 +98,7 @@ public class NouveauContact extends AppCompatActivity {
 
         Toast toast =Toast.makeText(context, message, duration);
         toast.show();
-    }
+    }//on envoie le message si les champ sont validés ou non
 
 
 }

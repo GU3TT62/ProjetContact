@@ -39,7 +39,7 @@ public class modif extends AppCompatActivity {
 
         Db=new DbContact(this);
         Db.open();
-        final CheckBox checkBox =  findViewById(R.id.fav);
+        final CheckBox checkBox =  findViewById(R.id.fav);//verification de valeur de checbox
         if (checkBox.isChecked()) {
             fav=true;
         }else{
@@ -78,7 +78,7 @@ public class modif extends AppCompatActivity {
         //long id=Long.parseLong(id1);
         if(ValidateName(name)&&ValidatePhone(phone)){//On verifie que les champs nom et telephone ne sont pas vide
             Db.updateContact(id1,name, prenomtx.getText().toString(),adressetx.getText().toString(),phone,mailtx.getText().toString(),fav);
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, MainActivity.class));//on repart sur la page principale
 
         }
 
@@ -97,7 +97,8 @@ public class modif extends AppCompatActivity {
             SendMessage(message);
         }
         return validate;
-    }
+    }//on valide ici le champ nom s'il n'est pas vide
+
     public boolean ValidatePhone(String phone){
         phone = teltx.getText().toString();
 
@@ -117,7 +118,7 @@ public class modif extends AppCompatActivity {
             }
         }
         return validate;
-    }
+    }//on valide ici le champ telephone s'il n'est pas vide et si c'est un entier
 
     private void SendMessage(String message) {
         Context context = getApplicationContext();
@@ -125,5 +126,5 @@ public class modif extends AppCompatActivity {
 
         Toast toast =Toast.makeText(context, message, duration);
         toast.show();
-    }
+    }//on envoie le message si les champ sont validés ou non
 }

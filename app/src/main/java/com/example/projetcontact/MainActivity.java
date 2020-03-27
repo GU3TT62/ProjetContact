@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView.OnItemClickListener vueContactOnClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-            //on definit la page ou serint affichés les infos sur le contact
+            //on definit la page ou seront affichés les infos sur le contact
             Intent i=new Intent(MainActivity.this,VueContact.class);
             i.putExtra("ID_CONTACT",id);
             startActivity(i);
@@ -155,13 +155,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
+    //déclarationdes activités du context menu
     public boolean onContextItemSelected(MenuItem item) {
         final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
         Cursor c=Db.fetchContact(info.id);
         startManagingCursor(c);
 
         switch (item.getItemId()) {
-            case R.id.supp:
+            case R.id.supp://Ici on appeelle l'activité pour supprimer un contact
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Confirmation")//titre
                         .setMessage("Êtes-vous sûr de vouloir supprimer cet item ?")//message
@@ -224,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(loca);
 
                 return true;
-            case R.id.menumodif:
+            case R.id.menumodif://ici on appelle la page de modification d'un contact
                 Intent intent=new Intent(MainActivity.this,modif.class);
                 intent.putExtra("ID_CONTACT",info.id);
                 startActivity(intent);
