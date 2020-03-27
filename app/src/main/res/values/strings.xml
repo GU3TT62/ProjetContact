@@ -34,6 +34,8 @@
     <string name="envoyer_un_mail">Envoyer un mail</string>
     <string name="localiser">Localiser</string>
     <string name="modifier">Modifier</string>
+    <string name="scan_qr_code">Scan QR Code</string>
+    <string name="ajouter_la_bdd">Ajouter à la BDD</string>
 
 
 </resources>

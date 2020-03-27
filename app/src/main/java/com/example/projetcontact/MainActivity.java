@@ -129,6 +129,10 @@ public class MainActivity extends AppCompatActivity {
                     listView.setVisibility(View.GONE);
                 }
                  */
+            case R.id.readQr:
+                Intent i=new Intent(MainActivity.this,scannQR.class);
+                startActivity(i);
+
 
         }
         return super.onOptionsItemSelected(item);
