@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -52,6 +53,7 @@ public class VueContact  extends AppCompatActivity {
         c = Db.fetchContact(idContact);
         if (c.moveToFirst()) {
             String id = c.getString( c.getColumnIndex(Db.KEY_ROWID) );
+            //Toast
             String prenom = c.getString(c.getColumnIndex(Db.KEY_PRENOM));
             String nom=c.getString(c.getColumnIndex(Db.KEY_NOM));
             String adresse=c.getString(c.getColumnIndex(Db.KEY_ADRESS));
@@ -85,12 +87,14 @@ public class VueContact  extends AppCompatActivity {
         smsIntent.setData(Uri.parse("sms:"+SelectedTaskCursor));
         startActivity(smsIntent);
     }//Activité permettant d'envoyer un sms au contact
+
     public void Email(View view){
         String SelectedTaskCursor = (String) mailtx.getText().toString();
         mailIntent.setType("message/rfc822");
         mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{SelectedTaskCursor});
         startActivity(mailIntent);
-    }//Activité permettanr d'envoyer un mail au contact
+    }//Activité permettant d'envoyer un mail au contact
+
     public void modifier(View view){
         Intent i=getIntent();
         long idContact=i.getLongExtra("ID_CONTACT",-1);
@@ -101,7 +105,7 @@ public class VueContact  extends AppCompatActivity {
         startActivity(intent);
 
 
-    }//activité permettan d'envoyer sur la page de modification d'un contact
+    }//activité permettant d'envoyer sur la page de modification d'un contact
 
 
 
