@@ -1,8 +1,6 @@
 package com.example.projetcontact;
 
-import android.app.Activity;
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -10,10 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,13 +18,19 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
 public class VueContact  extends AppCompatActivity {
-    private DbContact Db;
-
+    private DbContact db;
     private Intent callIntent;
     private Intent smsIntent;
     private Intent loca;
     private Intent mailIntent;
     private Bitmap bitmap ;
+
+    private String prenom;
+    private String nom;
+    private String telephone;
+    private String adresse;
+    private String fav;
+    private String mail;
 
     private TextView prenomtx;
     private TextView nomtx;
@@ -39,7 +40,7 @@ public class VueContact  extends AppCompatActivity {
     private Cursor c;
     private ImageView imageView;
 
-    public final static int QRcodeWidth = 300 ;
+    public final static int QRcodeWidth = 300 ;//taille du qr code
 
 
     protected void onCreate(Bundle savedInstanceState){
@@ -63,19 +64,22 @@ public class VueContact  extends AppCompatActivity {
         imageView = findViewById(R.id.imageView2);
 
 
-        Db=new DbContact(this);
-        Db.open();
+        db = new DbContact(this);
+        db.open();
 
 
-        c = Db.fetchContact(idContact);
+        c = db.fetchContact(idContact);
         if (c.moveToFirst()) {
 
 
-            String prenom = c.getString(c.getColumnIndex(Db.KEY_PRENOM));
-            String nom=c.getString(c.getColumnIndex(Db.KEY_NOM));
-            String adresse=c.getString(c.getColumnIndex(Db.KEY_ADRESS));
-            String telephone=c.getString(c.getColumnIndex(Db.KEY_TEL));
-            String mail=c.getString(c.getColumnIndex(Db.KEY_MAIL));
+            prenom = c.getString(c.getColumnIndex(db.KEY_PRENOM));
+            nom=c.getString(c.getColumnIndex(db.KEY_NOM));
+            adresse=c.getString(c.getColumnIndex(db.KEY_ADRESS));
+            telephone=c.getString(c.getColumnIndex(db.KEY_TEL));
+            mail=c.getString(c.getColumnIndex(db.KEY_MAIL));
+            fav=c.getString(c.getColumnIndex(db.Key_FAV));
+
+
             prenomtx.setText(prenom);
             nomtx.setText(nom);
             adressetx.setText(adresse);
@@ -126,16 +130,22 @@ public class VueContact  extends AppCompatActivity {
 
     public void qrCode(View view){
         try {
-            bitmap = TextToImageEncode(nomtx.getText().toString());
+            String infos=nom+ System.getProperty ("line.separator")//pour ajouter un saut de ligne
+                    +prenom+ System.getProperty ("line.separator")
+                    +telephone+ System.getProperty ("line.separator")
+                    +adresse+System.getProperty ("line.separator")
+                    +mail+System.getProperty ("line.separator")
+                    +fav+System.getProperty ("line.separator");
+            bitmap = TextToImageEncode(infos);//on met les informations à stocker dans bitmap
 
-            imageView.setImageBitmap(bitmap);
+            imageView.setImageBitmap(bitmap);//on met notre bitmap dans l'image view
 
         } catch (WriterException e) {
             e.printStackTrace();
         }
     }
 
-    Bitmap TextToImageEncode(String Value) throws WriterException {
+    Bitmap TextToImageEncode(String Value) throws WriterException {//on code notre Bitmap
         BitMatrix bitMatrix;
         try {
             bitMatrix = new MultiFormatWriter().encode(
@@ -160,12 +170,12 @@ public class VueContact  extends AppCompatActivity {
             for (int x = 0; x < bitMatrixWidth; x++) {
 
                 pixels[offset + x] = bitMatrix.get(x, y) ?
-                        getResources().getColor(R.color.black):getResources().getColor(R.color.white);
+                        getResources().getColor(R.color.black):getResources().getColor(R.color.white);//definitiondes couleur du code
             }
         }
-        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
+        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);//onc cré leqrcode
 
-        bitmap.setPixels(pixels, 0, QRcodeWidth, 0, 0, bitMatrixWidth, bitMatrixHeight);
+        bitmap.setPixels(pixels, 0, QRcodeWidth, 0, 0, bitMatrixWidth, bitMatrixHeight);//on donne le nombre de pixels du qr code
         return bitmap;
     }
 
