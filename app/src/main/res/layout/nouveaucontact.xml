@@ -101,9 +101,11 @@
         android:id="@+id/ajout"
         android:layout_width="188dp"
         android:layout_height="45dp"
+        android:background="@drawable/button"
         android:layout_marginTop="40dp"
         android:onClick="nouveauContact"
         android:text="@string/ajoutContact"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fav" />

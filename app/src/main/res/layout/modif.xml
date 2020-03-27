@@ -104,6 +104,7 @@
         android:layout_marginTop="40dp"
         android:onClick="modifierContact"
         android:text="@string/modifContact"
+        android:textColor="@color/white"
         android:background="@drawable/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
