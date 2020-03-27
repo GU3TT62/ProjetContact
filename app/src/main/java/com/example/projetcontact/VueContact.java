@@ -2,17 +2,21 @@ package com.example.projetcontact;
 
 import android.app.Activity;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.zxing.WriterException;
 
 public class VueContact  extends AppCompatActivity {
     private DbContact Db;
@@ -21,6 +25,7 @@ public class VueContact  extends AppCompatActivity {
     private Intent smsIntent;
     private Intent loca;
     private Intent mailIntent;
+    private Bitmap bitmap ;
 
     private TextView prenomtx;
     private TextView nomtx;
@@ -28,6 +33,8 @@ public class VueContact  extends AppCompatActivity {
     private TextView teltx;
     private TextView mailtx;
     private Cursor c;
+    private ImageView imageView;
+
 
 
     protected void onCreate(Bundle savedInstanceState){
@@ -41,19 +48,24 @@ public class VueContact  extends AppCompatActivity {
         mailIntent=new Intent(Intent.ACTION_SEND);
 
         long idContact=i.getLongExtra("ID_CONTACT",-1);
+
         prenomtx=findViewById(R.id.Prenom);
         nomtx=findViewById(R.id.Nom);
         adressetx=findViewById(R.id.Adresse);
         teltx=findViewById(R.id.Telephone);
         mailtx=findViewById(R.id.Mail);
+
+        imageView = findViewById(R.id.imageView2);
+
+
         Db=new DbContact(this);
         Db.open();
 
 
         c = Db.fetchContact(idContact);
         if (c.moveToFirst()) {
-            String id = c.getString( c.getColumnIndex(Db.KEY_ROWID) );
-            //Toast
+
+
             String prenom = c.getString(c.getColumnIndex(Db.KEY_PRENOM));
             String nom=c.getString(c.getColumnIndex(Db.KEY_NOM));
             String adresse=c.getString(c.getColumnIndex(Db.KEY_ADRESS));
@@ -98,16 +110,25 @@ public class VueContact  extends AppCompatActivity {
     public void modifier(View view){
         Intent i=getIntent();
         long idContact=i.getLongExtra("ID_CONTACT",-1);
-        c = Db.fetchContact(idContact);
-        String id = c.getString( c.getColumnIndex(Db.KEY_ROWID) );
+
         Intent intent=new Intent(VueContact.this,modif.class);
-        intent.putExtra("ID_CONTACT",id);
+        intent.putExtra("ID_CONTACT",idContact);
         startActivity(intent);
 
 
-    }//activité permettant d'envoyer sur la page de modification d'un contact
+    }
+    //activité permettant d'envoyer sur la page de modification d'un contact
 
+   /* public void qrCode(View view){
+        try {
+            bitmap = TextToImageEncode(nomtx.getText().toString());
 
+            imageView.setImageBitmap(bitmap);
+
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+    }*/
 
 
 }

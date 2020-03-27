@@ -45,7 +45,7 @@ public class modif extends AppCompatActivity {
         }else{
             fav=false;
         }
-         i=getIntent();
+        i=getIntent();
         idContact=i.getLongExtra("ID_CONTACT",-1);
 
         c = Db.fetchContact(idContact);
@@ -74,10 +74,11 @@ public class modif extends AppCompatActivity {
 
         i=getIntent();
         c = Db.fetchContact(idContact);
-        long id1 = c.getLong( c.getColumnIndex(Db.KEY_ROWID) );
-        //long id=Long.parseLong(id1);
+        int id = (int)c.getLong( c.getColumnIndex(Db.KEY_ROWID) );
+
+
         if(ValidateName(name)&&ValidatePhone(phone)){//On verifie que les champs nom et telephone ne sont pas vide
-            Db.updateContact(id1,name, prenomtx.getText().toString(),adressetx.getText().toString(),phone,mailtx.getText().toString(),fav);
+            Db.updateContact(id,name, prenomtx.getText().toString(),adressetx.getText().toString(),phone,mailtx.getText().toString(),fav);
             startActivity(new Intent(this, MainActivity.class));//on repart sur la page principale
 
         }
