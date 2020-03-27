@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                         })
                         .show();//permet d'afficher la box
             case R.id.action_favs:
+                //On masque la liste des contacts et on affiche celle des favoris (WIP)
                 listView.setVisibility(View.GONE);
                 listView.setVisibility(View.VISIBLE);
 
@@ -136,16 +137,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fillData() {
-        // Get all of the notes from the database and create the item list
+        // Curseur pour tout les contacts
         Cursor c1 = Db.fetchAllContact();
+
+        // Curseur pour les contacts favoris
         Cursor c2 = Db.fetchFavs();
         startManagingCursor(c1);
         startManagingCursor(c2);
 
         String[] from = new String[] { DbContact.KEY_NOM,DbContact.KEY_PRENOM};
         int[] to = new int[] { R.id.champ2,R.id.champ1 };
-
-        // Now create an array adapter and set it to display using our row
 
         SimpleCursorAdapter contact = new SimpleCursorAdapter(this, R.layout.contact, c1, from, to);
         SimpleCursorAdapter favs = new SimpleCursorAdapter(this, R.layout.contact, c2, from, to);

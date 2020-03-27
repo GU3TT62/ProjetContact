@@ -170,12 +170,13 @@ public class DbContact {
      * @return Cursor over all notes
      */
     public Cursor fetchAllContact() {
-
+        //Retourne l'ensemble des contacts
         return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_NOM,
                 KEY_PRENOM,KEY_ADRESS,KEY_TEL,KEY_MAIL,Key_FAV}, null, null, null, null, KEY_NOM);
     }
     //up
     public Cursor fetchFavs(){
+        //Retourne l'ensemble des favoris
         return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_NOM,
                 KEY_PRENOM,KEY_ADRESS,KEY_TEL,KEY_MAIL,Key_FAV}, Key_FAV+"="+1, null, null, null, KEY_NOM);
     }
