@@ -10,91 +10,90 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
-        android:layout_height="224dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
+        android:layout_marginBottom="15dp"
         android:contentDescription="@string/photo"
         android:src="@drawable/test"
+        app:layout_constraintBottom_toTopOf="@+id/Nom2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/appel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginBottom="4dp"
         android:background="@drawable/button"
         android:contentDescription="@string/phone"
         android:onClick="Call"
         android:text="@string/phone"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/modif"
-        app:layout_constraintStart_toStartOf="@+id/modif" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <Button
         android:id="@+id/loca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="18dp"
         android:background="@drawable/button"
         android:contentDescription="@string/loca"
         android:onClick="loca"
         android:text="@string/loca"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/modif"
-        app:layout_constraintStart_toEndOf="@+id/mail" />
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/mail" />
 
     <Button
         android:id="@+id/sms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
+        android:layout_marginTop="18dp"
         android:background="@drawable/button"
-        android:textColor="@color/white"
         android:contentDescription="@string/sms"
         android:onClick="Sms"
         android:text="@string/sms"
-        app:layout_constraintBaseline_toBaselineOf="@+id/appel"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/appel" />
 
     <Button
         android:id="@+id/mail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/SendMAil"
         android:background="@drawable/button"
-        android:textColor="@color/white"
+        android:contentDescription="@string/SendMAil"
         android:onClick="Email"
         android:text="@string/mail"
-        app:layout_constraintBaseline_toBaselineOf="@+id/loca"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <Button
         android:id="@+id/modif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/button"
         android:contentDescription="@string/modif"
         android:onClick="modifier"
-        android:background="@drawable/button"
-        android:textColor="@color/white"
         android:text="@string/modif"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/Nom2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="255dp"
         android:layout_marginEnd="66dp"
         android:layout_marginRight="66dp"
         android:text="Nom"
@@ -102,7 +101,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/Nom"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Nom"
@@ -110,8 +109,8 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
         android:text="Nom"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -122,7 +121,7 @@
         android:id="@+id/Prenom2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="80dp"
         android:layout_marginRight="80dp"
         android:text="Pre"
@@ -137,7 +136,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
         android:text="Prenom"
@@ -204,7 +203,7 @@
         android:id="@+id/Mail2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="70dp"
         android:layout_marginRight="70dp"
         android:text="Mail"
@@ -218,7 +217,7 @@
         android:id="@+id/Mail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
         android:text="Mail"
@@ -231,31 +230,21 @@
         android:id="@+id/qrcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginEnd="47dp"
-        android:layout_marginRight="47dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/button"
         android:onClick="qrCode"
         android:text="QrCode"
-        android:background="@drawable/button"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/loca"
-        app:layout_constraintStart_toStartOf="@+id/mail" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

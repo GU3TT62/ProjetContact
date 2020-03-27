@@ -16,7 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
 
 public class VueContact  extends AppCompatActivity {
     private DbContact Db;
@@ -35,6 +39,7 @@ public class VueContact  extends AppCompatActivity {
     private Cursor c;
     private ImageView imageView;
 
+    public final static int QRcodeWidth = 300 ;
 
 
     protected void onCreate(Bundle savedInstanceState){
@@ -119,7 +124,7 @@ public class VueContact  extends AppCompatActivity {
     }
     //activité permettant d'envoyer sur la page de modification d'un contact
 
-    /*public void qrCode(View view){
+    public void qrCode(View view){
         try {
             bitmap = TextToImageEncode(nomtx.getText().toString());
 
@@ -155,14 +160,14 @@ public class VueContact  extends AppCompatActivity {
             for (int x = 0; x < bitMatrixWidth; x++) {
 
                 pixels[offset + x] = bitMatrix.get(x, y) ?
-                        getResources().getColor(R.color.QRCodeBlackColor):getResources().getColor(R.color.QRCodeWhiteColor);
+                        getResources().getColor(R.color.black):getResources().getColor(R.color.white);
             }
         }
         Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
 
-        bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
+        bitmap.setPixels(pixels, 0, QRcodeWidth, 0, 0, bitMatrixWidth, bitMatrixHeight);
         return bitmap;
-    }*/
+    }
 
 
 }
