@@ -115,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
                             }
                         })
                         .show();//permet d'afficher la box
+                return true;
+
             case R.id.action_favs:
                 //On masque la liste des contacts et on affiche celle des favoris (WIP)
                 listView.setVisibility(View.GONE);
@@ -129,10 +131,13 @@ public class MainActivity extends AppCompatActivity {
                     listView.setVisibility(View.GONE);
                 }
                  */
+                return true;
+
             case R.id.readQr:
                 Intent i=new Intent(MainActivity.this,scannQR.class);
                 startActivity(i);
 
+                return true;
 
         }
         return super.onOptionsItemSelected(item);

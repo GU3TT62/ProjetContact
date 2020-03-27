@@ -50,9 +50,10 @@ public class scannQR extends AppCompatActivity {
                 String[] obj = result.getContents().split(System.getProperty ("line.separator"));//divise la chaine de caractere au endroits ou il y a un
                 textViewName.setText(obj[0]);
                 textViewPrenom.setText(obj[1]);
-                textViewTel.setText(obj[2]);
+                textViewMail.setText(obj[2]);
                 textViewAddress.setText(obj[3]);
-                textViewMail.setText(obj[4]);
+                textViewTel.setText(obj[4]);
+
 
 
             }
@@ -65,5 +66,12 @@ public class scannQR extends AppCompatActivity {
         qrScan.initiateScan();
     }
     public void ajoutBDD(View view) {
+        DbContact db = new DbContact(this);
+        db.open();
+        db.createContact(textViewName.getText().toString(),textViewPrenom.getText().toString(),textViewAddress.getText().toString(),textViewTel.getText().toString(),textViewMail.getText().toString()
+        ,false);
+        Intent intent=new Intent(scannQR.this,MainActivity.class);
+        startActivity(intent);
+
     }
 }

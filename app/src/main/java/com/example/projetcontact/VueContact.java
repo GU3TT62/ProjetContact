@@ -123,11 +123,11 @@ public class VueContact  extends AppCompatActivity {
 
     public void qrCode(View view){
         try {
-            String infos=nom+ System.getProperty ("line.separator")//pour ajouter un saut de ligne
+            String infos =nom+ System.getProperty ("line.separator")//pour ajouter un saut de ligne
                     +prenom+ System.getProperty ("line.separator")
-                    +telephone+ System.getProperty ("line.separator")
                     +adresse+System.getProperty ("line.separator")
-                    +mail+System.getProperty ("line.separator");
+                    +mail+System.getProperty ("line.separator")
+                    +telephone+ System.getProperty ("line.separator");
             Bitmap bitmap = TextToImageEncode(infos);//on met les informations à stocker dans bitmap
 
             imageView.setImageBitmap(bitmap);//on met notre bitmap dans l'image view

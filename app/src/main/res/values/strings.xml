@@ -36,6 +36,7 @@
     <string name="modifier">Modifier</string>
     <string name="scan_qr_code">Scan QR Code</string>
     <string name="ajouter_la_bdd">Ajouter à la BDD</string>
+    <string name="ajouter_le_contact">Ajouter le contact</string>
 
 
 </resources>

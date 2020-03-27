@@ -82,14 +82,16 @@
         android:background="@drawable/button"
         android:textColor="@color/white"
         android:text="@string/scan_qr_code" />
+
     <Button
         android:id="@+id/ajouterBDD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/button"
-        android:textColor="@color/white"
         android:onClick="ajoutBDD"
-        android:text="@string/ajouter_la_bdd" />
+        android:text="@string/ajouter_le_contact"
+        android:textColor="@color/white" />
 
 </RelativeLayout>
