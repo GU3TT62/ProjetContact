@@ -6,7 +6,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Modif  extends AppCompatActivity {
+public class modif  extends AppCompatActivity {
 
     private DbContact Db;
 
