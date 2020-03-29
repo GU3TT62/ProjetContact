@@ -47,7 +47,7 @@
 
     <EditText
         android:id="@+id/Tel"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
@@ -61,7 +61,7 @@
 
     <EditText
         android:id="@+id/adresse"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
