@@ -15,7 +15,6 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class scannQR extends AppCompatActivity {
 
-    //View Objects
     private Button buttonScan;
     private TextView textViewName, textViewAddress,textViewPrenom,textViewTel,textViewMail;
     private IntentIntegrator qrScan;
@@ -33,17 +32,15 @@ public class scannQR extends AppCompatActivity {
         textViewMail = (TextView) findViewById(R.id.textViewMail);
         textViewTel = (TextView) findViewById(R.id.textViewTell);
 
-        //intializing scan object
         qrScan = new IntentIntegrator(this);
 
     }
 
-    //Getting the scan results
     @Override
+    //lecture du qrCode
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
-            //if qrcode has nothing in it
             if (result.getContents() == null) {
                 Toast.makeText(this, "Resultat non trouvé", Toast.LENGTH_LONG).show();
             } else {
@@ -63,7 +60,7 @@ public class scannQR extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        qrScan.initiateScan();
+        qrScan.initiateScan();//lancement de la lecture du code
     }
     public void ajoutBDD(View view) {
         DbContact db = new DbContact(this);
