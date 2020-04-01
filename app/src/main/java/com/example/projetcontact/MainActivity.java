@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,8 +49,13 @@ public class MainActivity extends AppCompatActivity {
         listView =  findViewById(R.id.ListContact);
         listViewFav = findViewById(R.id.ListFavs);
         listView.setOnItemClickListener(vueContactOnClick);
+        listViewFav.setOnItemClickListener(vueContactOnClick);
+
+        listView.setVisibility(View.VISIBLE);
+        listViewFav.setVisibility(View.GONE);
 
         registerForContextMenu(listView);
+        registerForContextMenu(listViewFav);
 
 
         Db=new DbContact(this);
@@ -76,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };
+
 
 
 
@@ -119,18 +126,16 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.action_favs:
                 //On masque la liste des contacts et on affiche celle des favoris (WIP)
-                listView.setVisibility(View.GONE);
-                listView.setVisibility(View.VISIBLE);
 
-                /*
-                if(listView.getVisibility()==View.VISIBLE){
-                    listView.setVisibility(View.GONE);
+
+                if(listViewFav.getVisibility()==View.VISIBLE){
+                    listViewFav.setVisibility(View.GONE);
                     listView.setVisibility(View.VISIBLE);
-                }else{
-                    listView.setVisibility(View.VISIBLE);
+                }else if(listView.getVisibility()==View.VISIBLE){
+                    listViewFav.setVisibility(View.VISIBLE);
                     listView.setVisibility(View.GONE);
                 }
-                 */
+
                 return true;
 
             case R.id.readQr:
@@ -159,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
         SimpleCursorAdapter favs = new SimpleCursorAdapter(this, R.layout.contact, c2, from, to);
         listView.setAdapter(contact);
         listViewFav.setAdapter(favs);
+
         //On recupere les données des contacts présents dans la BDD Ici ils sont rangés par ordre alphabétique de noms
     }
 
@@ -199,10 +205,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(callIntent);
 
                 return true;
-            case R.id.fav:
-                Db.addFav(info.id);
-                fillData();
-                return true;
             case R.id.sms://ICI on envoie un sms le contact via le menu contextuel
 
                 String sms=c.getString(c.getColumnIndex(DbContact.KEY_TEL));
@@ -238,6 +240,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent=new Intent(MainActivity.this,modif.class);
                 intent.putExtra("ID_CONTACT",info.id);
                 startActivity(intent);
+                return true;
+
             default:
                 return super.onContextItemSelected(item);
         }

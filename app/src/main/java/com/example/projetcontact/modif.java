@@ -39,8 +39,7 @@ public class modif extends AppCompatActivity {
 
         Db=new DbContact(this);
         Db.open();
-        final CheckBox checkBox =  findViewById(R.id.fav);//verification de valeur de checbox
-        fav= checkBox.isChecked();
+
         i=getIntent();
         idContact=i.getLongExtra("ID_CONTACT",-1);
 
@@ -67,6 +66,8 @@ public class modif extends AppCompatActivity {
         name = nomtx.getText().toString();
         phone = teltx.getText().toString();
         idContact=i.getLongExtra("ID_CONTACT",-1);
+        final CheckBox checkBox =  findViewById(R.id.fav);//verification de valeur de checbox
+        fav= checkBox.isChecked();
 
         i=getIntent();
         c = Db.fetchContact(idContact);

@@ -161,7 +161,7 @@ public class DbContact {
         cv.put(KEY_ADRESS, mDb.query(DATABASE_TABLE, new String[] {KEY_ADRESS},KEY_ROWID+"="+rowId,null,null,null,null).getString(3));
         cv.put(KEY_TEL, mDb.query(DATABASE_TABLE, new String[] {KEY_TEL},KEY_ROWID+"="+rowId,null,null,null,null).getString(4));
         cv.put(KEY_MAIL, mDb.query(DATABASE_TABLE, new String[] {KEY_MAIL},KEY_ROWID+"="+rowId,null,null,null,null).getString(5));
-        cv.put(Key_FAV,true);
+        cv.put(Key_FAV,mDb.query(DATABASE_TABLE,new String[] {Key_FAV},KEY_ROWID+"="+rowId,null,null,null,null).getString(6));
     }
 
     /**
@@ -178,7 +178,7 @@ public class DbContact {
     public Cursor fetchFavs(){
         //Retourne l'ensemble des favoris
         return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_NOM,
-                KEY_PRENOM,KEY_ADRESS,KEY_TEL,KEY_MAIL,Key_FAV}, Key_FAV+"="+1, null, null, null, KEY_NOM);
+                KEY_PRENOM,KEY_ADRESS,KEY_TEL,KEY_MAIL,Key_FAV}, "fav=1", null, null, null, KEY_NOM);
     }
 
     /**

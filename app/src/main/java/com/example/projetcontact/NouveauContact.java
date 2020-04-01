@@ -36,14 +36,17 @@ public class NouveauContact extends AppCompatActivity {
 
         Db=new DbContact(this);
         Db.open();
-        final CheckBox checkBox =  findViewById(R.id.fav);
-        fav= checkBox.isChecked();
+
 
     }
     public void nouveauContact(View view) {
         //cette fonction permet d'envoyer les donner a mettre dans la BDD pour ajouter un contact
         String name = nom.getText().toString();
         String phone = tel.getText().toString();
+        final CheckBox checkBox =  findViewById(R.id.fav);
+
+        fav= checkBox.isChecked();
+
         if(ValidateName()&&ValidatePhone()){//On verifie que les champs nom et telephone ne sont pas vide
             Db.createContact(name, prenom.getText().toString(),adresse.getText().toString(),phone,mail.getText().toString(),fav);
             startActivity(new Intent(this, MainActivity.class));
